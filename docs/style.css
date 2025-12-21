@@ -1,0 +1,189 @@
+:root{
+  --bg: #0b1220;
+  --panel: rgba(255,255,255,0.06);
+  --panel-2: rgba(255,255,255,0.08);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.72);
+  --border: rgba(255,255,255,0.10);
+  --accent: #4f8cff;
+  --accent2: #7c5cff;
+  --shadow: 0 12px 35px rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(79,140,255,0.25), transparent 55%),
+              radial-gradient(900px 500px at 85% 15%, rgba(124,92,255,0.18), transparent 55%),
+              var(--bg);
+  line-height: 1.6;
+}
+
+a{ color: rgba(255,255,255,0.92); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+.container{
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-header{
+  padding: 56px 0 28px;
+}
+
+.header-grid{
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.kicker{
+  display: inline-block;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.title{
+  margin: 0 0 8px;
+  font-size: 44px;
+  line-height: 1.15;
+}
+
+.subtitle{
+  margin: 0 0 18px;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.cta-row{ display: flex; gap: 10px; margin: 14px 0; }
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.btn.primary{
+  background: linear-gradient(135deg, rgba(79,140,255,0.90), rgba(124,92,255,0.85));
+  border-color: rgba(255,255,255,0.14);
+}
+.btn:hover{ filter: brightness(1.08); text-decoration: none; }
+
+.link-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+.dot{ color: rgba(255,255,255,0.35); }
+
+.avatar-card{
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+}
+
+.avatar{
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  height: 170px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.avatar-placeholder{
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 28px;
+  background: linear-gradient(135deg, rgba(79,140,255,0.85), rgba(124,92,255,0.80));
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.mini-title{ margin: 0 0 6px; font-weight: 700; }
+.mini-list{ margin: 0; padding-left: 18px; color: var(--muted); }
+
+.section{ padding: 34px 0; }
+.section.alt{
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+h2{ margin: 0 0 10px; font-size: 26px; }
+h3{ margin: 0 0 8px; font-size: 18px; }
+
+.muted{ color: var(--muted); }
+
+.cards{
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+.cards.two{ grid-template-columns: repeat(2, 1fr); }
+.cards.three{ grid-template-columns: repeat(3, 1fr); }
+
+.card{
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+.list{ margin: 0; padding-left: 18px; color: var(--muted); }
+.list li{ margin: 6px 0; }
+
+.tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.tag{
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.82);
+}
+
+.card-link{
+  display: inline-block;
+  margin-top: 12px;
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+}
+.card-link:hover{ text-decoration: underline; }
+
+.footer{
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px){
+  .header-grid{ grid-template-columns: 1fr; }
+  .cards.two, .cards.three{ grid-template-columns: 1fr; }
+  .title{ font-size: 36px; }
+}
