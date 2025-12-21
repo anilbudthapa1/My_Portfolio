@@ -1,182 +1,619 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anil Budthapa | Cybersecurity Portfolio</title>
-  <meta name="description" content="Cybersecurity portfolio: projects, certifications, skills, and contact." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Anil Budthapa — SOC Analyst / Security Analyst in Melbourne. Blue Team, detection, incident triage, malware analysis, automation." />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <title>Anil Budthapa | SOC Analyst / Security Analyst</title>
+
+  <link rel="preload" href="css/style.css" as="style" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Anil Budthapa | SOC Analyst / Security Analyst" />
+  <meta property="og:description" content="Blue Team, detection engineering, incident triage, malware analysis, and security automation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/profile.jpg" />
 </head>
+
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
   <header class="site-header">
-    <div class="container header-grid">
-      <div>
-        <p class="kicker">Cybersecurity • Blue Team • Tooling</p>
-        <h1 class="title">Anil Budthapa</h1>
-        <p class="subtitle">
-          SOC-focused cybersecurity practitioner building practical detection, analysis, and automation projects.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
-
-        <div class="link-row">
-          <a href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-          <span class="dot">•</span>
-          <a href="https://www.linkedin.com/in/anil-budthapa-4858951bb" target="_blank" rel="noreferrer">LinkedIn</a>
-          <span class="dot">•</span>
-          <a href="#certifications">Certifications</a>
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="brand-name">Anil Budthapa</span>
+          <span class="brand-sub">SOC Analyst • Security Analyst</span>
         </div>
       </div>
 
-      <div class="avatar-card">
-        <div class="avatar">
-          <!-- Optional: add docs/assets/profile.jpg and uncomment the <img> below -->
-          <!-- <img src="assets/profile.jpg" alt="Profile photo" /> -->
-          <div class="avatar-placeholder">AB</div>
-        </div>
-        <div class="mini">
-          <p class="mini-title">Current focus</p>
-          <ul class="mini-list">
-            <li>Log analysis (Splunk)</li>
-            <li>Network analysis (Wireshark)</li>
-            <li>Detection engineering (YARA/Snort)</li>
-          </ul>
+      <nav class="nav" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="label">Theme</span>
+        </button>
+        <a class="btn btn-ghost" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <div class="container mobile-nav-inner">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <div class="mobile-actions">
+          <a class="btn btn-ghost" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main>
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About</h2>
-        <p class="muted">
-          I build hands-on cybersecurity projects focused on detection, incident investigation, and automation.
-          This portfolio highlights my practical work, certifications, and learning progress.
-        </p>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <p class="pill">
+            Melbourne • Open to Onsite / Hybrid / Remote
+          </p>
 
-        <div class="cards two">
-          <div class="card">
-            <h3>Core skills</h3>
-            <ul class="list">
-              <li>SIEM: Splunk (searching, dashboards, investigations)</li>
-              <li>Network: Wireshark, TCP/IP fundamentals</li>
-              <li>Detection: YARA basics, IDS concepts (Snort)</li>
-              <li>Scripting: Python/Bash (automation & parsing)</li>
-            </ul>
+          <h1>
+            SOC Analyst / Security Analyst<br />
+            <span class="muted">Blue Team • Detection • Incident Triage • Malware Analysis</span>
+          </h1>
+
+          <p class="hero-lead">
+            I’m a cybersecurity professional focused on investigation-driven security operations, practical lab work,
+            and building automation to streamline detection and response workflows.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="#contact">Contact</a>
           </div>
-          <div class="card">
-            <h3>What I’m building</h3>
-            <ul class="list">
-              <li>Portfolio projects with clear problem statements and outcomes</li>
-              <li>Write-ups and learning notes from labs (TryHackMe)</li>
-              <li>Repeatable workflows for analysis and reporting</li>
-            </ul>
+
+          <div class="signal-row" aria-label="Core tooling">
+            <span class="tag">Splunk</span>
+            <span class="tag">Wireshark</span>
+            <span class="tag">YARA</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Burp Suite</span>
+            <span class="tag">Nmap</span>
+          </div>
+
+          <div class="social-row">
+            <a class="mini-link" href="https://www.linkedin.com/in/anil-budthapa-4858951bb/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="mini-link" href="https://tryhackme.com/p/insohacker" target="_blank" rel="noreferrer">TryHackMe</a>
+            <a class="mini-link" href="https://orcid.org/0009-0006-1169-0977/" target="_blank" rel="noreferrer">ORCID</a>
+            <a class="mini-link" href="https://www.credly.com/badges/9e4eb4b8-2bd5-40c8-8201-2f1997ec83ac/public_url" target="_blank" rel="noreferrer">Credly</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Profile card">
+          <div class="profile-top">
+            <img class="avatar" src="assets/profile.jpg" alt="Portrait of Anil Budthapa" />
+            <div>
+              <h2 class="profile-name">Anil Budthapa</h2>
+              <p class="profile-role">SOC Analyst • Security Analyst</p>
+              <p class="profile-loc">Greater Melbourne Area</p>
+            </div>
+          </div>
+
+          <div class="profile-grid">
+            <div class="kpi">
+              <div class="kpi-num">Top 1%</div>
+              <div class="kpi-label">TryHackMe Rank</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">313</div>
+              <div class="kpi-label">Rooms Completed</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">51</div>
+              <div class="kpi-label">Streak</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">39</div>
+              <div class="kpi-label">Badges</div>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <a class="btn btn-primary w-full" href="#contact">Hire / Collaborate</a>
+            <a class="btn btn-ghost w-full" href="mailto:hypemsltech@gmail.com">Email</a>
+          </div>
+
+          <div class="profile-foot">
+            <span class="tag">Bug Bounty</span>
+            <span class="tag">Security Automation</span>
+            <span class="tag">IoT Security</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- Impact Snapshot -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Impact Snapshot</h2>
+          <p class="muted">Signal over noise — measurable practice and consistent hands-on work.</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card stat">
+            <div class="stat-big">100+</div>
+            <div class="stat-label">Practical labs completed (HTB/THM/PortSwigger)</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-big">313</div>
+            <div class="stat-label">TryHackMe rooms completed</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-big">Go / Python</div>
+            <div class="stat-label">Automation-first scripting approach</div>
+          </div>
+          <div class="card stat">
+            <div class="stat-big">SOC Focus</div>
+            <div class="stat-label">Detection, triage, investigation, reporting</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section alt">
+    <!-- Projects -->
+    <section class="section" id="projects">
       <div class="container">
-        <h2>Projects</h2>
-        <p class="muted">Replace the placeholders with your real project links and descriptions.</p>
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <p class="muted">Case-study style: what problem it solves, what you built, and evidence.</p>
+        </div>
 
-        <div class="cards three">
-          <article class="card">
-            <h3>Pentesting Framework (Go)</h3>
-            <p class="muted">
-              Modular web scanning framework (OWASP A01–A10) with reporting and automation.
-            </p>
-            <div class="tags">
-              <span class="tag">Go</span><span class="tag">OWASP</span><span class="tag">Automation</span>
+        <div class="grid-3">
+          <!-- Project 1 -->
+          <article class="card project">
+            <img class="thumb" src="assets/projects/pentesting_framework.jpg" alt="Pentesting Framework project preview" />
+            <div class="project-body">
+              <div class="project-top">
+                <h3>Pentesting Framework</h3>
+                <div class="chip-row">
+                  <span class="chip">Go</span>
+                  <span class="chip">Recon</span>
+                  <span class="chip">OWASP</span>
+                </div>
+              </div>
+              <p class="muted">
+                A modular security testing framework focused on recon, scanning, and structured reporting workflows.
+              </p>
+              <ul class="bullets">
+                <li>Modular scanning approach aligned to OWASP categories</li>
+                <li>Local UI and structured result output</li>
+                <li>Extensible architecture for adding new modules</li>
+              </ul>
+              <div class="project-actions">
+                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/Pentesting_Framework" target="_blank" rel="noreferrer">Repo</a>
+              </div>
             </div>
-            <a class="card-link" href="https://github.com/anilbudthapa1/Pentesting_Framework" target="_blank" rel="noreferrer">
-              View on GitHub →
-            </a>
           </article>
 
-          <article class="card">
-            <h3>Care Portal (Python)</h3>
-            <p class="muted">
-              Patient management system using Python with structured models and UI workflows.
-            </p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">App</span>
+          <!-- Project 2 -->
+          <article class="card project">
+            <img class="thumb" src="assets/projects/care_portal.jpg" alt="Care Portal project preview" />
+            <div class="project-body">
+              <div class="project-top">
+                <h3>Care Portal (Smart PMS)</h3>
+                <div class="chip-row">
+                  <span class="chip">Python</span>
+                  <span class="chip">SQL</span>
+                  <span class="chip">Security</span>
+                </div>
+              </div>
+              <p class="muted">
+                A secure Patient Management System concept with role-based access and operational workflow features.
+              </p>
+              <ul class="bullets">
+                <li>Profiles, appointments, prescriptions, billing, notifications</li>
+                <li>Structured data model and UI workflow</li>
+                <li>Security-minded design and access separation</li>
+              </ul>
+              <div class="project-actions">
+                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/care_portal" target="_blank" rel="noreferrer">Repo</a>
+              </div>
             </div>
-            <a class="card-link" href="https://github.com/anilbudthapa1/care_portal" target="_blank" rel="noreferrer">
-              View on GitHub →
-            </a>
           </article>
 
-          <article class="card">
-            <h3>Malware Analysis / Learning Repo</h3>
-            <p class="muted">
-              Structured experiments, notes, and defensive learnings from labs and exercises.
-            </p>
-            <div class="tags">
-              <span class="tag">Analysis</span><span class="tag">YARA</span><span class="tag">Labs</span>
+          <!-- Project 3 -->
+          <article class="card project">
+            <img class="thumb" src="assets/projects/malware_development.jpg" alt="Malware Development project preview" />
+            <div class="project-body">
+              <div class="project-top">
+                <h3>Malware Development & Analysis Lab</h3>
+                <div class="chip-row">
+                  <span class="chip">C</span>
+                  <span class="chip">Windows</span>
+                  <span class="chip">RE</span>
+                </div>
+              </div>
+              <p class="muted">
+                A learning repository for understanding malware internals, analysis thinking, and defensive insight.
+              </p>
+              <ul class="bullets">
+                <li>Executable internals and behavior comprehension</li>
+                <li>Analysis-focused mindset and lab practice</li>
+                <li>Documentation-driven learning</li>
+              </ul>
+              <div class="project-actions">
+                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/Malware_Development" target="_blank" rel="noreferrer">Repo</a>
+              </div>
             </div>
-            <a class="card-link" href="https://github.com/anilbudthapa1/Malware_Development" target="_blank" rel="noreferrer">
-              View on GitHub →
-            </a>
+          </article>
+        </div>
+
+        <div class="grid-2 mt-16">
+          <!-- Extra project -->
+          <article class="card project horizontal">
+            <img class="thumb wide" src="assets/projects/my_portfolio.jpg" alt="My Portfolio repo preview" />
+            <div class="project-body">
+              <h3>My Portfolio</h3>
+              <p class="muted">
+                Central hub repository for my work, links, and ongoing improvements.
+              </p>
+              <div class="chip-row">
+                <span class="chip">HTML/CSS</span>
+                <span class="chip">Brand</span>
+                <span class="chip">Recruiter-ready</span>
+              </div>
+              <div class="project-actions">
+                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/My_Portfolio" target="_blank" rel="noreferrer">Repo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Extra project -->
+          <article class="card project horizontal">
+            <img class="thumb wide" src="assets/projects/pentesting_framework.jpg" alt="THM PCAP practice preview" />
+            <div class="project-body">
+              <h3>THM / PCAP Practice</h3>
+              <p class="muted">
+                Structured practice analyzing network captures and improving investigation skills.
+              </p>
+              <div class="chip-row">
+                <span class="chip">Wireshark</span>
+                <span class="chip">PCAP</span>
+                <span class="chip">Threat Hunting</span>
+              </div>
+              <div class="project-actions">
+                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/THM" target="_blank" rel="noreferrer">Repo</a>
+              </div>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="certifications" class="section">
+    <!-- Skills -->
+    <section class="section" id="skills">
       <div class="container">
-        <h2>Certifications</h2>
-        <p class="muted">Add your certs and link to proof (folder, PDF, badge, etc.).</p>
-
-        <div class="card">
-          <ul class="list">
-            <li><strong>TryHackMe:</strong> Advent of Cyber 2025 progress, room completions</li>
-            <li><strong>CompTIA Security+ (SY0-701):</strong> In progress</li>
-            <li><strong>Other:</strong> Add your certificates from your repo’s Certification folder</li>
-          </ul>
-
-          <a class="card-link" href="https://github.com/anilbudthapa1/My_Portfolio/tree/main/Certification" target="_blank" rel="noreferrer">
-            Open Certifications Folder →
-          </a>
+        <div class="section-head">
+          <h2>Skills & Tooling</h2>
+          <p class="muted">Focused on blue-team operations, analysis, and automation.</p>
         </div>
-      </div>
-    </section>
 
-    <section id="contact" class="section alt">
-      <div class="container">
-        <h2>Contact</h2>
-        <p class="muted">Use email + professional links. Keep it simple.</p>
-
-        <div class="cards two">
+        <div class="grid-2">
           <div class="card">
-            <h3>Email</h3>
-            <p class="muted">
-              <a href="mailto:hypemsltech@gmail.com">hypemsltech@gmail.com</a>
-            </p>
+            <h3>Top Skills</h3>
+            <div class="tag-grid">
+              <span class="tag big">Malware Development</span>
+              <span class="tag big">Malware Analysis</span>
+              <span class="tag big">Security Automation</span>
+              <span class="tag big">SOC Investigation</span>
+              <span class="tag big">Threat Hunting</span>
+              <span class="tag big">Network Analysis</span>
+              <span class="tag big">Vulnerability Analysis</span>
+              <span class="tag big">Python</span>
+              <span class="tag big">Go</span>
+              <span class="tag big">Linux</span>
+              <span class="tag big">Java</span>
+              <span class="tag big">Bug Bounty Research</span>
+            </div>
           </div>
+
           <div class="card">
-            <h3>Links</h3>
-            <ul class="list">
-              <li><a href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub Profile</a></li>
-              <li><a href="https://www.linkedin.com/in/anil-budthapa-4858951bb" target="_blank" rel="noreferrer">LinkedIn Profile</a></li>
+            <h3>Tools I Use</h3>
+            <div class="tag-grid">
+              <span class="tag">Splunk</span>
+              <span class="tag">Wireshark</span>
+              <span class="tag">YARA</span>
+              <span class="tag">Sysmon</span>
+              <span class="tag">Burp Suite</span>
+              <span class="tag">Nmap</span>
+              <span class="tag">Git</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Windows Internals</span>
+              <span class="tag">Active Directory (learning)</span>
+              <span class="tag">PortSwigger Labs</span>
+              <span class="tag">HTB / THM</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <h3>Areas I Emphasize</h3>
+            <ul class="bullets">
+              <li>Detection engineering and alert triage workflows</li>
+              <li>Packet analysis and log-based investigations</li>
+              <li>Security scripting to reduce repetitive work</li>
+              <li>IoT security experimentation (nRF24, CS11011, BLE)</li>
             </ul>
           </div>
         </div>
-
-        <footer class="footer">
-          <p class="muted">© <span id="year"></span> Anil Budthapa</p>
-        </footer>
       </div>
     </section>
+
+    <!-- Certifications -->
+    <section class="section" id="certs">
+      <div class="container">
+        <div class="section-head">
+          <h2>Certifications & Memberships</h2>
+          <p class="muted">Credible signals with verification where available.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/google_cybersecurity.jpg" alt="Google Cybersecurity certificate image" />
+            <h3>Google Cybersecurity</h3>
+            <p class="muted">Google • Credential ID: FBD9G21U346C</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/automate_python.jpg" alt="Automate Cybersecurity Tasks with Python certificate image" />
+            <h3>Automate Cybersecurity Tasks with Python</h3>
+            <p class="muted">Google • Credential ID: GYGW8DZ7M36O</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/sound_alarm.jpg" alt="Sound the Alarm: Detection and Response certificate image" />
+            <h3>Sound the Alarm: Detection and Response</h3>
+            <p class="muted">Google • Credential ID: 2E2XD9OJ44TA</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/assets_threats.jpg" alt="Assets, Threats, and Vulnerabilities certificate image" />
+            <h3>Assets, Threats, and Vulnerabilities</h3>
+            <p class="muted">Google • Credential ID: 2YUBDMHZ4MFD</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/connect_protect.jpg" alt="Connect and Protect: Networks and Network Security certificate image" />
+            <h3>Connect and Protect: Networks and Network Security</h3>
+            <p class="muted">Google • Credential ID: 3RXV7208HHBO</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/linux_sql.jpg" alt="Tools of the Trade: Linux and SQL certificate image" />
+            <h3>Tools of the Trade: Linux and SQL</h3>
+            <p class="muted">Google • Credential ID: 862TIP42661I</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/play_it_safe.jpg" alt="Play It Safe: Manage Security Risks certificate image" />
+            <h3>Play It Safe: Manage Security Risks</h3>
+            <p class="muted">Google • Credential ID: RBHA99PWOBQB</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/cloud_intro.jpg" alt="Introduction to Cloud Computing certificate image" />
+            <h3>Introduction to Cloud Computing</h3>
+            <p class="muted">Simplilearn • Credential ID: 2928448</p>
+          </article>
+
+          <article class="card cert">
+            <img class="cert-img" src="assets/certs/isaca_member.jpg" alt="ISACA membership card image" />
+            <h3>ISACA Student Membership</h3>
+            <p class="muted">
+              ISACA ID: 2244571 • Active<br />
+              Member since: 21 Oct 2025 • Paid thru: 31 Dec 2026
+            </p>
+          </article>
+        </div>
+
+        <div class="card mt-16">
+          <div class="row-between">
+            <div>
+              <h3>Credly Badge</h3>
+              <p class="muted">Public verification link available.</p>
+            </div>
+            <a class="btn btn-ghost" href="https://www.credly.com/badges/9e4eb4b8-2bd5-40c8-8201-2f1997ec83ac/public_url" target="_blank" rel="noreferrer">View Badge</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row-between">
+            <div>
+              <h3>Professional Memberships</h3>
+              <p class="muted">ISC2 • ISACA (Student Membership)</p>
+            </div>
+            <div class="chip-row">
+              <span class="chip">CISSP Aspirant</span>
+              <span class="chip">Blue Team</span>
+              <span class="chip">Continuous Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p class="muted">A security-first mindset with hands-on practice and disciplined documentation.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Summary</h3>
+            <p class="muted">
+              I’m a cybersecurity professional and ethical hacker with strong hands-on practice across TryHackMe,
+              Hack The Box, and PortSwigger labs. I build and maintain virtual environments for realistic testing,
+              and I develop tools in Python, Bash, and Go to automate security assessments and streamline workflows.
+            </p>
+            <p class="muted">
+              I also explore IoT security projects (nRF24, CS11011, BLE) and participate in bug bounty programs,
+              applying responsible disclosure practices. I’m preparing for CISSP and continuously strengthening core
+              domains including security operations, network security, IAM, and security testing.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Target Roles</h3>
+            <ul class="bullets">
+              <li>SOC Analyst (L1/L2) • Security Analyst</li>
+              <li>Junior DFIR / Threat Analyst (entry pathway)</li>
+              <li>Security Automation-focused roles</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h3>What I Want to Do Most</h3>
+            <ul class="bullets">
+              <li>Incident investigation using logs + PCAP evidence</li>
+              <li>Detection engineering and alert-quality improvement</li>
+              <li>Malware analysis and defensive learning from adversary tradecraft</li>
+              <li>Automation that reduces SOC toil</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="muted">Fastest response: LinkedIn.</p>
+        </div>
+
+        <div class="card contact-card">
+          <div class="contact-grid">
+            <div>
+              <h3>Let’s connect</h3>
+              <p class="muted">
+                If you are hiring for SOC or Security Analyst roles, or want to collaborate on detection,
+                automation, or security research, reach out.
+              </p>
+
+              <div class="contact-actions">
+                <a class="btn btn-primary" href="mailto:hypemsltech@gmail.com">Email</a>
+                <a class="btn btn-ghost" href="tel:+61421688186">Call</a>
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/anil-budthapa-4858951bb/" target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
+            </div>
+
+            <div class="contact-details" aria-label="Contact details">
+              <div class="detail">
+                <span class="detail-k">Mobile</span>
+                <span class="detail-v"><a href="tel:+61421688186">0421 688 186</a></span>
+              </div>
+              <div class="detail">
+                <span class="detail-k">Email</span>
+                <span class="detail-v"><a href="mailto:hypemsltech@gmail.com">hypemsltech@gmail.com</a></span>
+              </div>
+              <div class="detail">
+                <span class="detail-k">Domain</span>
+                <span class="detail-v">defencexinso.com</span>
+              </div>
+              <div class="detail">
+                <span class="detail-k">GitHub</span>
+                <span class="detail-v"><a href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">github.com/anilbudthapa1</a></span>
+              </div>
+              <div class="detail">
+                <span class="detail-k">TryHackMe</span>
+                <span class="detail-v"><a href="https://tryhackme.com/p/insohacker" target="_blank" rel="noreferrer">tryhackme.com/p/insohacker</a></span>
+              </div>
+              <div class="detail">
+                <span class="detail-k">ORCID</span>
+                <span class="detail-v"><a href="https://orcid.org/0009-0006-1169-0977/" target="_blank" rel="noreferrer">0009-0006-1169-0977</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Anil Budthapa</div>
+          <div class="footer-sub muted">SOC Analyst • Security Analyst • Melbourne</div>
+        </div>
+        <div class="footer-links">
+          <a href="#projects">Projects</a>
+          <a href="#certs">Certifications</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Theme toggle (dark/light) - no external dependencies
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    const saved = localStorage.getItem("theme");
+    if (saved) root.setAttribute("data-theme", saved);
+
+    toggle?.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    });
+
+    // Mobile nav
+    const navToggle = document.getElementById("navToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    function setMobileNav(open) {
+      mobileNav.classList.toggle("open", open);
+      mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    navToggle?.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.contains("open");
+      setMobileNav(!isOpen);
+    });
+
+    mobileNav?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => setMobileNav(false));
+    });
   </script>
 </body>
 </html>
