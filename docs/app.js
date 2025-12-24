@@ -1,28 +1,9 @@
-// app.js
+
+
 (function () {
-  const root = document.documentElement;
-
-  // Theme
-  const toggle = document.getElementById("themeToggle");
-  const themeLabel = document.getElementById("themeLabel");
-  const saved = localStorage.getItem("theme");
-  const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)")?.matches;
-
-  function setTheme(next) {
-    root.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-    toggle?.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
-    if (themeLabel) themeLabel.textContent = `Theme: ${next[0].toUpperCase()}${next.slice(1)}`;
-  }
-
-  setTheme(saved || (prefersLight ? "light" : "dark"));
-
-  toggle?.addEventListener("click", () => {
-    const current = root.getAttribute("data-theme") || "dark";
-    setTheme(current === "dark" ? "light" : "dark");
-  });
-
+  // ---------------------------
   // Mobile nav
+  // ---------------------------
   const navToggle = document.getElementById("navToggle");
   const mobileNav = document.getElementById("mobileNav");
 
@@ -39,44 +20,106 @@
     setMobileNav(!isOpen);
   });
 
-  mobileNav?.querySelectorAll("a").forEach(a => {
+  mobileNav?.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => setMobileNav(false));
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMobileNav(false);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMobileNav(false);
   });
 
-  // Scrollspy (active nav link)
-  const sectionIds = ["projects", "skills", "certs", "about", "contact"];
-  const navLinks = Array.from(document.querySelectorAll('.nav a'))
-    .filter(a => a.getAttribute("href")?.startsWith("#"));
+  // ---------------------------
+  // Fast scroll over Spline (wheel)
+  // ---------------------------
+  let velocity = 0;
+  let rafId = null;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute("id");
-      navLinks.forEach(a => a.classList.toggle("is-active", a.getAttribute("href") === `#${id}`));
-    });
-  }, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
+  // Tuned for "fast" feel:
+  const FRICTION = 0.84;        // inertia decay (lower = longer)
+  const MAX_STEP = 6500;        // max pixels per frame
+  const STOP_EPS = 0.6;         // stop threshold
+  const BOOST_TRACKPAD = 0.10;   // small deltas boost (try 8–12)
+  const BOOST_WHEEL = 0.4;      // large deltas boost (try 2.5–4)
 
-  sectionIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+  }
 
-  // Copy email
-  const copyBtn = document.getElementById("copyEmailBtn");
-  const copyStatus = document.getElementById("copyStatus");
-  const email = "hypemsltech@gmail.com";
+  function normalizeWheelDelta(e) {
+    let dy = e.deltaY;
+    if (e.deltaMode === 1) dy *= 16; // lines -> px
+    if (e.deltaMode === 2) dy *= window.innerHeight; // pages -> px
+    return dy;
+  }
 
-  copyBtn?.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      if (copyStatus) copyStatus.textContent = "Copied email to clipboard.";
-    } catch {
-      if (copyStatus) copyStatus.textContent = "Copy failed. Please copy manually: " + email;
+  function isOverSpline(target) {
+    return !!(target && typeof target.closest === "function" && target.closest("spline-viewer"));
+  }
+
+  function tick() {
+    const step = clamp(velocity, -MAX_STEP, MAX_STEP);
+    if (step !== 0) window.scrollBy({ top: step, left: 0, behavior: "auto" });
+
+    velocity *= FRICTION;
+
+    if (Math.abs(velocity) < STOP_EPS) {
+      velocity = 0;
+      rafId = null;
+      return;
     }
-    window.setTimeout(() => { if (copyStatus) copyStatus.textContent = ""; }, 2500);
-  });
+    rafId = requestAnimationFrame(tick);
+  }
+
+  document.addEventListener(
+    "wheel",
+    (e) => {
+      if (!isOverSpline(e.target)) return;
+
+      // Prevent Spline from zooming/orbiting on wheel
+      e.preventDefault();
+
+      const dy = normalizeWheelDelta(e);
+      const abs = Math.abs(dy);
+
+      // Trackpad usually emits small deltas, wheel mouse emits larger jumps
+      const boost = abs < 15 ? BOOST_TRACKPAD : BOOST_WHEEL;
+
+      velocity += dy * boost;
+      velocity = clamp(velocity, -14000, 14000);
+
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    },
+    { passive: false, capture: true }
+  );
+
+  // ---------------------------
+  // Touch scroll over Spline (mobile)
+  // ---------------------------
+  let touchLastY = null;
+
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      if (!isOverSpline(e.target)) return;
+      touchLastY = e.touches?.[0]?.clientY ?? null;
+    },
+    { passive: true, capture: true }
+  );
+
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isOverSpline(e.target)) return;
+
+      const y = e.touches?.[0]?.clientY ?? null;
+      if (y == null || touchLastY == null) return;
+
+      const delta = touchLastY - y; // finger up => scroll down
+      touchLastY = y;
+
+      e.preventDefault();
+      window.scrollBy({ top: delta * 1.6, left: 0, behavior: "auto" });
+    },
+    { passive: false, capture: true }
+  );
 })();
