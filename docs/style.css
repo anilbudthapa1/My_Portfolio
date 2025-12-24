@@ -15,6 +15,23 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
+button,
+input,
+select,
+textarea { font: inherit; color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 .skip-link {
   position: absolute;
@@ -120,7 +137,7 @@ body { background: radial-gradient(1200px 800px at 10% 0%, rgba(94,234,212,.10),
 html[data-theme="light"] .btn:hover {
   border-color: rgba(10,18,30,.16);
 }
-.btn:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+.btn:focus { outline: none; }
 
 .btn-primary {
   border-color: transparent;
@@ -210,7 +227,7 @@ html[data-theme="light"] .site-header {
   cursor: pointer;
 }
 .theme-toggle:hover { background: var(--surface2); transform: translateY(-1px); }
-.theme-toggle:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+.theme-toggle:focus { outline: none; }
 .theme-toggle .dot {
   width: 10px; height: 10px;
   border-radius: 999px;
@@ -226,7 +243,10 @@ html[data-theme="light"] .site-header {
   border: 1px solid var(--border);
   background: var(--surface);
   cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
 }
+.nav-toggle:hover { transform: translateY(-1px); background: var(--surface2); }
+.nav-toggle:focus { outline: none; }
 .nav-toggle span {
   display: block;
   width: 18px;
@@ -258,6 +278,7 @@ html[data-theme="light"] .mobile-nav {
   color: var(--text);
   font-weight: 700;
 }
+.mobile-nav a:focus-visible { text-decoration: none; }
 .mobile-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -506,7 +527,12 @@ html[data-theme="light"] .card {
 }
 
 /* Certs */
-.cert { display: grid; gap: 10px; }
+.cert {
+  display: grid;
+  gap: 10px;
+  text-decoration: none;
+}
+.cert:hover { text-decoration: none; }
 .cert h3 { margin: 0; font-size: 15px; }
 .cert p { margin: 0; font-size: 13px; }
 .cert-img {

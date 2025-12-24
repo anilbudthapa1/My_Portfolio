@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Anil Budthapa — SOC Analyst / Security Analyst in Melbourne. Blue Team, detection, incident triage, malware analysis, automation." />
   <meta name="theme-color" content="#0b0f14" />
+  <meta name="color-scheme" content="dark light" />
 
   <title>Anil Budthapa | SOC Analyst / Security Analyst</title>
 
@@ -41,7 +42,7 @@
       </nav>
 
       <div class="header-actions">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
           <span class="dot" aria-hidden="true"></span>
           <span class="label">Theme</span>
         </button>
@@ -49,13 +50,13 @@
         <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
       </div>
 
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
 
     <!-- Mobile Nav -->
-    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
       <div class="container mobile-nav-inner">
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
@@ -67,7 +68,7 @@
           <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
         </div>
       </div>
-    </div>
+    </nav>
   </header>
 
   <main id="main">
@@ -113,7 +114,7 @@
 
         <aside class="hero-card" aria-label="Profile card">
           <div class="profile-top">
-            <img class="avatar" src="assets/profile.jpg" alt="Portrait of Anil Budthapa" />
+            <img class="avatar" src="assets/profile.jpg" alt="Portrait of Anil Budthapa" decoding="async" />
             <div>
               <h2 class="profile-name">Anil Budthapa</h2>
               <p class="profile-role">SOC Analyst • Security Analyst</p>
@@ -196,7 +197,7 @@
         <div class="grid-3">
           <!-- Project 1 -->
           <article class="card project">
-            <img class="thumb" src="assets/projects/pentesting_framework.jpg" alt="Pentesting Framework project preview" />
+            <img class="thumb" src="assets/projects/pentesting_framework.jpg" alt="Pentesting Framework project preview" loading="lazy" decoding="async" />
             <div class="project-body">
               <div class="project-top">
                 <h3>Pentesting Framework</h3>
@@ -222,7 +223,7 @@
 
           <!-- Project 2 -->
           <article class="card project">
-            <img class="thumb" src="assets/projects/care_portal.jpg" alt="Care Portal project preview" />
+            <img class="thumb" src="assets/projects/care_portal.jpg" alt="Care Portal project preview" loading="lazy" decoding="async" />
             <div class="project-body">
               <div class="project-top">
                 <h3>Care Portal (Smart PMS)</h3>
@@ -248,7 +249,7 @@
 
           <!-- Project 3 -->
           <article class="card project">
-            <img class="thumb" src="assets/projects/malware_development.jpg" alt="Malware Development project preview" />
+            <img class="thumb" src="assets/projects/malware_development.jpg" alt="Malware Development project preview" loading="lazy" decoding="async" />
             <div class="project-body">
               <div class="project-top">
                 <h3>Malware Development & Analysis Lab</h3>
@@ -276,7 +277,7 @@
         <div class="grid-2 mt-16">
           <!-- Extra project -->
           <article class="card project horizontal">
-            <img class="thumb wide" src="assets/projects/my_portfolio.jpg" alt="My Portfolio repo preview" />
+            <img class="thumb wide" src="assets/projects/my_portfolio.jpg" alt="My Portfolio repo preview" loading="lazy" decoding="async" />
             <div class="project-body">
               <h3>My Portfolio</h3>
               <p class="muted">
@@ -295,7 +296,7 @@
 
           <!-- Extra project -->
           <article class="card project horizontal">
-            <img class="thumb wide" src="assets/projects/pentesting_framework.jpg" alt="THM PCAP practice preview" />
+            <img class="thumb wide" src="assets/projects/pentesting_framework.jpg" alt="THM PCAP practice preview" loading="lazy" decoding="async" />
             <div class="project-body">
               <h3>THM / PCAP Practice</h3>
               <p class="muted">
@@ -382,62 +383,68 @@
         </div>
 
         <div class="grid-3">
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/google_cybersecurity.jpg" alt="Google Cybersecurity certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/FBD9G21U346C" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/google_cybersecurity.jpg" alt="Google Cybersecurity certificate image" loading="lazy" decoding="async" />
             <h3>Google Cybersecurity</h3>
             <p class="muted">Google • Credential ID: FBD9G21U346C</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/automate_python.jpg" alt="Automate Cybersecurity Tasks with Python certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/GYGW8DZ7M36O" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/automate_python.jpg" alt="Automate Cybersecurity Tasks with Python certificate image" loading="lazy" decoding="async" />
             <h3>Automate Cybersecurity Tasks with Python</h3>
             <p class="muted">Google • Credential ID: GYGW8DZ7M36O</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/sound_alarm.jpg" alt="Sound the Alarm: Detection and Response certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/2E2XD9OJ44TA" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/sound_alarm.jpg" alt="Sound the Alarm: Detection and Response certificate image" loading="lazy" decoding="async" />
             <h3>Sound the Alarm: Detection and Response</h3>
             <p class="muted">Google • Credential ID: 2E2XD9OJ44TA</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/assets_threats.jpg" alt="Assets, Threats, and Vulnerabilities certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/2YUBDMHZ4MFD" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/assets_threats.jpg" alt="Assets, Threats, and Vulnerabilities certificate image" loading="lazy" decoding="async" />
             <h3>Assets, Threats, and Vulnerabilities</h3>
             <p class="muted">Google • Credential ID: 2YUBDMHZ4MFD</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/connect_protect.jpg" alt="Connect and Protect: Networks and Network Security certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/3RXV7208HHBO" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/connect_protect.jpg" alt="Connect and Protect: Networks and Network Security certificate image" loading="lazy" decoding="async" />
             <h3>Connect and Protect: Networks and Network Security</h3>
             <p class="muted">Google • Credential ID: 3RXV7208HHBO</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/linux_sql.jpg" alt="Tools of the Trade: Linux and SQL certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/862TIP42661I" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/linux_sql.jpg" alt="Tools of the Trade: Linux and SQL certificate image" loading="lazy" decoding="async" />
             <h3>Tools of the Trade: Linux and SQL</h3>
             <p class="muted">Google • Credential ID: 862TIP42661I</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/play_it_safe.jpg" alt="Play It Safe: Manage Security Risks certificate image" />
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/H11RYF8HNYP9" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/image.png" alt="Foundations of Cybersecurity certificate image" loading="lazy" decoding="async" />
+            <h3>Foundations of Cybersecurity</h3>
+            <p class="muted">Google • Credential ID: H11RYF8HNYP9</p>
+          </a>
+
+          <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/RBHA99PWOBQB" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/play_it_safe.jpg" alt="Play It Safe: Manage Security Risks certificate image" loading="lazy" decoding="async" />
             <h3>Play It Safe: Manage Security Risks</h3>
             <p class="muted">Google • Credential ID: RBHA99PWOBQB</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/cloud_intro.jpg" alt="Introduction to Cloud Computing certificate image" />
+          <a class="card cert" href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNTExIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvdGh1bWJfMjkyODQ0OF8xNjMzNTAxMDk3LnBuZyIsInVzZXJuYW1lIjoiQW5pbCBCdWR0aGFwYSJ9&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F3971%2FIntroduction-to-Cloud-Computing%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1532170120855430783&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVL%2FUPjSzy9s9JCkqyrytKTUstKsrMS49PKsovL04tsvUBqkpN8cwDALbKklBBAAAA" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/cloud_intro.jpg" alt="Introduction to Cloud Computing certificate image" loading="lazy" decoding="async" />
             <h3>Introduction to Cloud Computing</h3>
             <p class="muted">Simplilearn • Credential ID: 2928448</p>
-          </article>
+          </a>
 
-          <article class="card cert">
-            <img class="cert-img" src="assets/certs/isaca_member.jpg" alt="ISACA membership card image" />
+          <a class="card cert" href="https://github.com/anilbudthapa1/My_Portfolio/blob/main/Certification/membership-certificate-2244571.pdf" target="_blank" rel="noreferrer">
+            <img class="cert-img" src="assets/certs/isaca_member.jpg" alt="ISACA membership card image" loading="lazy" decoding="async" />
             <h3>ISACA Student Membership</h3>
             <p class="muted">
               ISACA ID: 2244571 • Active<br />
               Member since: 21 Oct 2025 • Paid thru: 31 Dec 2026
             </p>
-          </article>
+          </a>
         </div>
 
         <div class="card mt-16">
@@ -586,14 +593,27 @@
     // Theme toggle (dark/light) - no external dependencies
     const root = document.documentElement;
     const toggle = document.getElementById("themeToggle");
+    const themeLabel = toggle?.querySelector(".label");
     const saved = localStorage.getItem("theme");
-    if (saved) root.setAttribute("data-theme", saved);
+    const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)").matches;
+
+    function setTheme(next) {
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
+      }
+      if (themeLabel) {
+        themeLabel.textContent = `Theme: ${next.charAt(0).toUpperCase()}${next.slice(1)}`;
+      }
+    }
+
+    setTheme(saved || (prefersLight ? "light" : "dark"));
 
     toggle?.addEventListener("click", () => {
       const current = root.getAttribute("data-theme") || "dark";
       const next = current === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
+      setTheme(next);
     });
 
     // Mobile nav
@@ -604,6 +624,7 @@
       mobileNav.classList.toggle("open", open);
       mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
       navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     }
 
     navToggle?.addEventListener("click", () => {
@@ -613,6 +634,12 @@
 
     mobileNav?.querySelectorAll("a").forEach(a => {
       a.addEventListener("click", () => setMobileNav(false));
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        setMobileNav(false);
+      }
     });
   </script>
 </body>
