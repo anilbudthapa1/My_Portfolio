@@ -143,6 +143,10 @@ Actively seeking opportunities as:
 - **Cybersecurity Analyst**
 - **Junior Security Engineer**
 
+![GitHub repo size](https://img.shields.io/github/repo-size/anilbudthapa1/My_Portfolio)
+![GitHub stars](https://img.shields.io/github/stars/anilbudthapa1/My_Portfolio)
+
+
 I bring hands-on technical skills, strong learning ability, and real project experience.
 
 ---
