@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Why Sysmon Event IDs Matter for SOC Teams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Why Sysmon Event IDs matter for SOC teams and how to operationalize them for detection engineering and incident response." />
+
+  <!-- Optional Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==============
+       RESET / BASE
+       ============== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      color: #0f172a;
+      background: #0b1120;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==============
+       LAYOUT
+       ============== */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      background: radial-gradient(circle at top left, #1d4ed8 0, transparent 55%),
+                  radial-gradient(circle at bottom right, #22c55e 0, transparent 55%),
+                  #020617;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 18px;
+      padding: 2rem 1.75rem 2.5rem;
+      box-shadow:
+        0 24px 80px rgba(15, 23, 42, 0.7),
+        0 0 0 1px rgba(148, 163, 184, 0.12);
+      backdrop-filter: blur(12px);
+      color: #e5e7eb;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 2.5rem 3rem 3rem;
+      }
+    }
+
+    /* ==============
+       HEADER
+       ============== */
+    .blog-header {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .blog-title {
+      font-size: 1.9rem;
+      line-height: 1.25;
+      margin: 0 0 0.75rem;
+      color: #f9fafb;
+    }
+
+    @media (min-width: 768px) {
+      .blog-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-label {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    /* ==============
+       CONTENT
+       ============== */
+    article {
+      font-size: 0.98rem;
+      color: #e5e7eb;
+    }
+
+    article h2 {
+      font-size: 1.25rem;
+      margin: 2rem 0 0.5rem;
+      color: #f9fafb;
+    }
+
+    article h3 {
+      font-size: 1.02rem;
+      margin: 1.4rem 0 0.35rem;
+      color: #e5e7eb;
+    }
+
+    article p {
+      margin: 0.4rem 0 0.75rem;
+      color: #cbd5f5;
+    }
+
+    article strong {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-box {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.25), transparent 55%),
+                  rgba(15, 23, 42, 0.95);
+      padding: 1.25rem 1.25rem 1.15rem;
+      margin: 1rem 0 1.75rem;
+    }
+
+    .highlight-box h2 {
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin: 0.25rem 0 1rem;
+    }
+
+    li {
+      margin: 0.2rem 0;
+    }
+
+    .code-tag {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.78rem;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      padding: 0.08rem 0.35rem;
+      border-radius: 0.35rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      white-space: nowrap;
+    }
+
+    /* ==============
+       FIGURE / IMAGE
+       ============== */
+    figure.sysmon-figure {
+      margin: 1.5rem 0 2rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 55%),
+                  #020617;
+      box-shadow: 0 16px 50px rgba(15, 23, 42, 0.85);
+    }
+
+    figure.sysmon-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figure.sysmon-figure figcaption {
+      padding: 0.65rem 0.85rem 0.75rem;
+      font-size: 0.82rem;
+      color: #9ca3af;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.92));
+    }
+
+    .badge-inline {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.05rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-right: 0.4rem;
+      color: #93c5fd;
+    }
+
+    /* ==============
+       TABLE STYLE
+       ============== */
+    .table-wrapper {
+      margin: 1.5rem 0 1.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    thead {
+      background: linear-gradient(to right, #1f2937, #111827);
+    }
+
+    th, td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid rgba(55, 65, 81, 0.8);
+      vertical-align: top;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 600;
+      color: #e5e7eb;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    /* ==============
+       FOOTER / AUTHOR
+       ============== */
+    .author-box {
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.15rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      color: #cbd5f5;
+    }
+
+    .hashtags {
+      font-size: 0.82rem;
+      margin-top: 0.5rem;
+      color: #9ca3af;
+      word-wrap: break-word;
+    }
+
+    /* ==============
+       RESPONSIVE
+       ============== */
+    @media (max-width: 480px) {
+      .blog-title {
+        font-size: 1.6rem;
+      }
+      .meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .container {
+        padding: 1.75rem 1.25rem 2.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <header class="blog-header">
+        <div class="badge">
+          <span class="dot"></span>
+          Sysmon · SOC Telemetry
+        </div>
+        <h1 class="blog-title">
+          Why Sysmon Event IDs Matter for SOC Teams: A Practical Guide to High-Fidelity Detection
+        </h1>
+        <div class="meta">
+          <span><span class="meta-label">Author:</span> Anil Budthapa</span>
+          <span><span class="meta-label">Date:</span> 01 January 2026</span>
+          <span><span class="meta-label">Focus:</span> SOC Operations · Detection Engineering</span>
+        </div>
+      </header>
+
+      <article>
+        <section class="highlight-box">
+          <div class="section-label">Overview</div>
+          <h2>Sysmon as a Strategic Sensor for SOC Operations</h2>
+          <p>
+            Modern intrusions do not happen in a single step. They unfold as a chain of actions:
+            initial execution, privilege escalation, persistence, lateral movement, and finally
+            impact or data exfiltration. Default Windows logging rarely provides enough fidelity
+            to reconstruct this chain with confidence.
+          </p>
+          <p>
+            <strong>Sysmon (System Monitor)</strong> fills this gap by producing rich, high-signal
+            telemetry that maps directly to attacker techniques. When properly configured and
+            operationalised in a SOC, Sysmon transforms endpoint logs into actionable evidence
+            for detection engineering and incident response.
+          </p>
+        </section>
+
+        <figure class="sysmon-figure">
+          <img src="pic.png" alt="Sysmon dashboard showing key event IDs and endpoint activity" />
+          <figcaption>
+            <span class="badge-inline">Figure</span>
+            Example Sysmon dashboard view summarising critical event IDs across endpoints.
+          </figcaption>
+        </figure>
+
+        <section>
+          <div class="section-label">Execution & Initial Access</div>
+          <h2>Execution & Initial Access: Establishing the First Footprint</h2>
+          <h3><span class="code-tag">Event ID 1 – ProcessCreate</span></h3>
+          <p>
+            Logs every new process execution, including command-line arguments. This event is the
+            primary starting point for endpoint investigations and enables SOC analysts to build
+            a precise execution timeline, identify LOLBins, and detect suspicious tooling such as
+            <code>powershell.exe</code>, <code>certutil.exe</code>, or <code>mshta.exe</code>.
+          </p>
+
+          <h3><span class="code-tag">Event ID 7 – ImageLoad</span></h3>
+          <p>
+            Captures DLL loading activity. Attackers frequently leverage DLL hijacking and
+            injection to execute payloads in the context of trusted processes. Event 7 provides
+            visibility into unusual or unsigned DLLs and abuse of living-off-the-land binaries.
+          </p>
+
+          <h3><span class="code-tag">Event ID 3 – NetworkConnect</span></h3>
+          <p>
+            Records outbound network connections with process context. Correlating Event 3 with
+            Event 1 allows SOC teams to answer a critical question: <strong>“Which process initiated
+            this connection to this IP or domain?”</strong> This is essential for detecting
+            command-and-control (C2) traffic and malicious downloads.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">Lateral Movement & Privilege Escalation</div>
+          <h2>Lateral Movement & Privilege Escalation: Detecting Post-Exploitation Activity</h2>
+
+          <h3><span class="code-tag">Event ID 8 – CreateRemoteThread</span></h3>
+          <p>
+            Indicates remote thread creation, a classic memory-injection technique used by many
+            post-exploitation frameworks including Cobalt Strike and Meterpreter. This event is
+            a high-value signal for detecting process injection and stealthy lateral movement.
+          </p>
+
+          <h3><span class="code-tag">Event ID 10 – ProcessAccess</span></h3>
+          <p>
+            Monitors access to other processes, including sensitive ones such as
+            <code>lsass.exe</code>. Abnormal access patterns here often correspond to credential
+            theft attempts using tools like Mimikatz. Properly tuned alerts on Event 10 can
+            provide early warning of privilege escalation and credential harvesting.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">Persistence & Configuration Abuse</div>
+          <h2>Persistence & Configuration Abuse: Watching the Registry</h2>
+          <p>
+            The combination of Events <span class="code-tag">12</span>,
+            <span class="code-tag">13</span>, and <span class="code-tag">14</span> provides a
+            detailed view of registry changes:
+          </p>
+
+          <ul>
+            <li><span class="code-tag">12 – RegistryObjectCreate</span> · New key creation</li>
+            <li><span class="code-tag">13 – RegistryValueSet</span> · Value modifications</li>
+            <li><span class="code-tag">14 – RegistryKeyRename</span> · Renaming of existing keys</li>
+          </ul>
+
+          <p>
+            Attackers rely heavily on registry-based persistence via Run keys, service
+            configuration, shell hijacking, and scheduled tasks. Tracking this trio of events
+            allows SOC teams to detect unauthorised configuration changes that indicate
+            persistence, privilege escalation, or system tampering.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">File System & Exfiltration</div>
+          <h2>File System & Data Exfiltration: Payloads, Hiding Places, and Cleanup</h2>
+
+          <h3><span class="code-tag">Event ID 11 – FileCreate</span></h3>
+          <p>
+            Captures file creation operations. This is invaluable for spotting payload drops,
+            staging files, ransomware notes, and other artefacts of malicious activity,
+            particularly in locations such as <code>%TEMP%</code>, <code>%APPDATA%</code>, and
+            user Downloads folders.
+          </p>
+
+          <h3><span class="code-tag">Event ID 15 – FileCreateStreamHash</span></h3>
+          <p>
+            Monitors Alternate Data Streams (ADS) and records a hash of the content. When the
+            content is text and small, Sysmon can log the actual text, including metadata such as
+            <code>Zone.Identifier</code> with <strong>HostUrl</strong> and
+            <strong>ReferrerUrl</strong>. This enables analysts to see the original download
+            source for suspicious files and to detect hidden scripts or payloads stored inside ADS.
+          </p>
+
+          <h3><span class="code-tag">Event ID 23 – FileDelete</span></h3>
+          <p>
+            Tracks file deletion events. While deletion is common in normal operations, a pattern
+            of deletes following malicious executions often indicates anti-forensics behaviour.
+            Correlating Event 23 with Events 1, 10, and 11 can reveal attempts to remove tools,
+            logs, or artefacts after an attack.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">Discovery & Reconnaissance</div>
+          <h2>Discovery & Recon: Mapping the Environment and Data Paths</h2>
+
+          <h3><span class="code-tag">Event ID 22 – DNSQuery</span></h3>
+          <p>
+            DNS activity is a critical component of attacker infrastructure. Event 22 logs DNS
+            queries at the endpoint level, enabling detection of unusual domains, DGA-style
+            patterns, and reconnaissance for external services. When correlated with proxy and
+            firewall logs, this event supports strong detection of C2 infrastructure.
+          </p>
+
+          <h3><span class="code-tag">Event IDs 24 / 25 – Clipboard Events</span></h3>
+          <p>
+            Clipboard capture events can be highly indicative of data theft, especially over RDP
+            sessions or during interactive access to sensitive systems. Observing unusual clipboard
+            activity on high-value endpoints is an important part of insider threat and data
+            exfiltration monitoring.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">Stealth & Automation</div>
+          <h2>Stealth & Automation: WMI as a Fileless Attack Surface</h2>
+
+          <h3><span class="code-tag">Event ID 26 – WMI Event</span></h3>
+          <p>
+            WMI is a preferred mechanism for fileless persistence, remote execution, and
+            automated tasking in advanced intrusions. Event 26 surfaces WMI consumers and filters
+            that may be abused by attackers to maintain stealthy, long-term access without
+            dropping obvious binaries to disk.
+          </p>
+        </section>
+
+        <section>
+          <div class="section-label">Summary</div>
+          <h2>From Raw Logs to Operational Detection</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event ID</th>
+                  <th>Category</th>
+                  <th>Primary Detection Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Execution</td>
+                  <td>Process creation and command line; baseline for attack timelines.</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Network</td>
+                  <td>Outbound connections with process context; C2 and downloads.</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Execution</td>
+                  <td>DLL loading, including unsigned or abnormal modules.</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Lateral Movement</td>
+                  <td>Remote thread injection; high-risk post-exploitation behaviour.</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Privilege Escalation</td>
+                  <td>Process access to LSASS and other sensitive targets; credential theft.</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>File System</td>
+                  <td>Payload drops, staging files, ransomware artefacts.</td>
+                </tr>
+                <tr>
+                  <td>12 / 13 / 14</td>
+                  <td>Persistence</td>
+                  <td>Registry-based persistence and configuration abuse.</td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td>File System / ADS</td>
+                  <td>Hidden content and download metadata in Alternate Data Streams.</td>
+                </tr>
+                <tr>
+                  <td>22</td>
+                  <td>Discovery / C2</td>
+                  <td>DNS queries for suspicious or DGA-like domains.</td>
+                </tr>
+                <tr>
+                  <td>23</td>
+                  <td>Anti-forensics</td>
+                  <td>Cleanup and artefact removal post-compromise.</td>
+                </tr>
+                <tr>
+                  <td>24 / 25</td>
+                  <td>Exfiltration</td>
+                  <td>Clipboard activity that may indicate copy-out of sensitive data.</td>
+                </tr>
+                <tr>
+                  <td>26</td>
+                  <td>Stealth / Automation</td>
+                  <td>Fileless persistence and tasking via WMI.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            For security operations teams, Sysmon is more than a supplementary log source; it is a
+            strategic sensor that, when tuned and operationalised, significantly reduces attacker
+            dwell time. Aligning detections with these core event IDs allows SOC analysts to
+            prioritise the highest-value telemetry, automate triage, and respond to threats with
+            greater accuracy and speed.
+          </p>
+        </section>
+
+        <section class="author-box">
+          <div><span class="author-name">About the Author</span></div>
+          <p>
+            Anil Budthapa is a cybersecurity practitioner focused on SOC operations, malware
+            defence, and detection engineering. With hands-on experience in blue-team tooling,
+            threat hunting, and adversary emulation, Anil is committed to sharing practical,
+            operator-focused knowledge with the security community.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Sysmon</span>
+            <span class="tag">SOC Operations</span>
+            <span class="tag">Detection Engineering</span>
+            <span class="tag">Digital Forensics</span>
+            <span class="tag">Incident Response</span>
+          </div>
+
+          <div class="hashtags">
+            #cybersecurity #sysmon #soc #incidentresponse #dfir #blueteam
+            #detectionengineering #mitreattack #windowssecurity #threathunting
+            #securityoperations #malwareanalysis #digitalforensics #networksecurity
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
