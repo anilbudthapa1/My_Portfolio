@@ -52,7 +52,7 @@ Choose:
 Add a new forest
 
 Domain name:
-corp.local
+lab.local
 
 ---
 
