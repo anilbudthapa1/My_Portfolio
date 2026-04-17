@@ -80,7 +80,7 @@ Shared NAT Network
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260416174435.png) ![](Active_Directory/evidence/picture/Pasted image 20260416174457.png)
+![](../evidence/Pasted image 20260416174435.png) ![](../evidence/Pasted image 20260416174457.png)
 
 
 ---
@@ -115,7 +115,7 @@ The server will host identity services for the environment.
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260416174723.png) ![](Active_Directory/evidence/picture/Pasted image 20260416175327.png)
+![](../evidence/Pasted image 20260416174723.png) ![](../evidence/Pasted image 20260416175327.png)
 
 
 ---
@@ -174,7 +174,7 @@ Without a Domain Controller, centralized login and policy management are not pos
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260416180218.png) ![](Active_Directory/evidence/picture/Pasted image 20260416180250.png) ![](Active_Directory/evidence/picture/Pasted image 20260416180349.png) ![](Active_Directory/evidence/picture/Pasted image 20260416180432.png)
+![](../evidence/Pasted image 20260416180218.png) ![](../evidence/Pasted image 20260416180250.png) ![](../evidence/Pasted image 20260416180349.png) ![](../evidence/Pasted image 20260416180432.png)
 
 
 ---
@@ -209,7 +209,7 @@ Users must exist in AD before they can authenticate to domain-joined systems.
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260416191330.png) ![](Active_Directory/evidence/picture/Pasted image 20260416191358.png) ![](Active_Directory/evidence/picture/Pasted image 20260416191502.png)
+![](../evidence/Pasted image 20260416191330.png) ![](../evidence/Pasted image 20260416191358.png) ![](../evidence/Pasted image 20260416191502.png)
 
 
 ---
@@ -237,7 +237,7 @@ The client uses DNS to locate the Domain Controller and authentication services.
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417220909.png) ![](Active_Directory/evidence/picture/Pasted image 20260417220928.png)
+![](../evidence/Pasted image 20260417220909.png) ![](../evidence/Pasted image 20260417220928.png)
 
 
 ---
@@ -275,7 +275,7 @@ The workstation receives a computer account in Active Directory and domain users
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417221314.png) ![](Active_Directory/evidence/picture/Pasted image 20260417223552.png)
+![](../evidence/Pasted image 20260417221314.png) ![](../evidence/Pasted image 20260417223552.png)
 
 
 ---
@@ -299,7 +299,7 @@ Ideal for SIEM labs
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417223812.png) ![](Active_Directory/evidence/picture/Pasted image 20260417223940.png)
+![](../evidence/Pasted image 20260417223812.png) ![](../evidence/Pasted image 20260417223940.png)
 
 
 ---
@@ -337,7 +337,7 @@ Splunk turns raw logs into searchable security intelligence.
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417224006.png) ![](Active_Directory/evidence/picture/Pasted image 20260417224053.png) ![](Active_Directory/evidence/picture/Pasted image 20260417224329.png)
+![](../evidence/Pasted image 20260417224006.png) ![](../evidence/Pasted image 20260417224053.png) ![](../evidence/Pasted image 20260417224329.png)
 
 
 ---
@@ -369,7 +369,7 @@ Critical authentication events become visible in the SIEM.
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417225107.png) ![](Active_Directory/evidence/picture/Pasted image 20260417230447.png)
+![](../evidence/Pasted image 20260417225107.png) ![](../evidence/Pasted image 20260417230447.png)
 
 
 ---
@@ -399,7 +399,7 @@ Important Event IDs
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417230809.png) ![](Active_Directory/evidence/picture/Pasted image 20260417230825.png)
+![](../evidence/Pasted image 20260417230809.png) ![](../evidence/Pasted image 20260417230825.png)
 
 
 ---
@@ -425,7 +425,7 @@ Allows awareness testing and mail workflow investigation without paying for publ
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417231534.png) ![](Active_Directory/evidence/picture/Pasted image 20260417231553.png) ![](Active_Directory/evidence/picture/Pasted image 20260417231825.png)
+![](../evidence/Pasted image 20260417231534.png) ![](../evidence/Pasted image 20260417231553.png) ![](../evidence/Pasted image 20260417231825.png)
 
 
 ---
@@ -449,7 +449,7 @@ Investigate user actions
 
 Evidence
 
-![](Active_Directory/evidence/picture/Pasted image 20260417233020.png)
+![](../evidence/Pasted image 20260417233020.png)
 
 
 ---
