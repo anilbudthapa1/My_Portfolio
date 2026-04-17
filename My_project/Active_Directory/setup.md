@@ -38,8 +38,8 @@ VMware allows multiple systems to run on one physical machine while maintaining 
 - Shared NAT Network
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416174435.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416174457.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416174435.png" alt="VM Setup 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416174457.png" alt="VM Setup 2" />
 
 ---
 
@@ -59,8 +59,8 @@ Deploy the core server that will become the Domain Controller.
 The server will host identity services for the environment.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416174723.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416175327.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416174723.png" alt="Windows Server Installation 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416175327.png" alt="Windows Server Installation 2" />
 
 ---
 
@@ -92,10 +92,10 @@ Promotion converts a standard Windows Server into a Domain Controller that store
 Without a Domain Controller, centralized login and policy management are not possible.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416180218.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416180250.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416180349.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416180432.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416180218.png" alt="Promote Server 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416180250.png" alt="Promote Server 2" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416180349.png" alt="Promote Server 3" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416180432.png" alt="Promote Server 4" />
 
 ---
 
@@ -115,9 +115,9 @@ Create domain identities for login testing.
 Users must exist in AD before they can authenticate to domain-joined systems.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416191330.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416191358.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260416191502.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416191330.png" alt="Create User 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416191358.png" alt="Create User 2" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260416191502.png" alt="Create User 3" />
 
 ---
 
@@ -136,8 +136,8 @@ Prepare the workstation to become a managed domain endpoint.
 The client uses DNS to locate the Domain Controller and authentication services.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417220909.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417220928.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417220909.png" alt="Windows 11 Config 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417220928.png" alt="Windows 11 Config 2" />
 
 ---
 
@@ -158,8 +158,8 @@ Establish trust between the workstation and the domain.
 The workstation receives a computer account in Active Directory and domain users can log in.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417221314.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417223552.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417221314.png" alt="Join Domain 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417223552.png" alt="Join Domain 2" />
 
 ---
 
@@ -175,8 +175,8 @@ Deploy Linux server for Splunk and Mailpit.
 - Ideal for SIEM labs
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417223812.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417223940.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417223812.png" alt="Ubuntu Install 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417223940.png" alt="Ubuntu Install 2" />
 
 ---
 
@@ -197,9 +197,9 @@ Deploy centralized logging platform.
 Splunk turns raw logs into searchable security intelligence.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417224006.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417224053.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417224329.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417224006.png" alt="Splunk Install 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417224053.png" alt="Splunk Install 2" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417224329.png" alt="Splunk Install 3" />
 
 ---
 
@@ -218,8 +218,8 @@ Send Windows logs to Splunk.
 Critical authentication events become visible in the SIEM.
 
 ## Evidence
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417225107.png)
-![](https://github.com/anilbudthapa1/My_Portfolio/blob/main/My_project/Active_Directory/evidence/Pasted image 20260417230447.png)
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417225107.png" alt="Universal Forwarder 1" />
+<img src="https://raw.githubusercontent.com/anilbudthapa1/My_Portfolio/main/My_project/Active_Directory/evidence/Pasted%20image%2020260417230447.png" alt="Universal Forwarder 2" />
 
 ---
 
