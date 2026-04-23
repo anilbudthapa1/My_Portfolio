@@ -1,373 +1,322 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html class="dark" lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Why Sysmon Event IDs Matter for SOC Teams</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Why Sysmon Event IDs matter for SOC teams and how to operationalize them for detection engineering and incident response." />
-
-  <!-- Favicon (same as index) -->
-  <link rel="icon" type="image/x-icon" href="https://defencexinso.com/favicon.ico">
-
-  <!-- Global site styles (VERY IMPORTANT: note the leading /) -->
-  <!-- Option 1 (recommended): absolute path from site root -->
-  <link rel="stylesheet" href="/style.css" />
-
-  <!-- If you deploy from /docs/ and style.css is one level above blogs/, you can also use: -->
-  <!-- <link rel="stylesheet" href="../style.css" /> -->
-
-  <!-- Optional Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Spline Viewer (same as index) -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Why Sysmon Event IDs Matter for SOC Teams | CYBER_LOG</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff41;
+        }
+        .terminal-grid {
+            background-image: linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#ebffe2",
+                      "primary-container": "#00ff41",
+                      "on-primary": "#003907",
+                      "background": "#131313",
+                      "on-background": "#e5e2e1",
+                      "surface": "#131313",
+                      "outline": "#84967e",
+                      "secondary-container": "#508eff"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "md": "24px",
+                      "xl": "80px",
+                      "sm": "12px",
+                      "gutter": "24px",
+                      "lg": "48px"
+              },
+              "fontFamily": {
+                      "headline-xl": ["Space Grotesk"],
+                      "headline-md": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-caps": ["Space Grotesk"],
+                      "code-callout": ["monospace"]
+              }
+            },
+          },
+        }
+    </script>
 </head>
-
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- FULL-PAGE SPLINE BACKGROUND -->
-  <div class="bg3d" aria-hidden="true">
-    <div class="bg3d-spline">
-      <spline-viewer url="https://prod.spline.design/dHYPjVMCxEMMjI36/scene.splinecode"></spline-viewer>
+<body class="font-body-md bg-background text-on-background terminal-grid min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800">
+    <div class="flex justify-between items-center px-8 py-4 max-w-[1200px] mx-auto">
+        <a href="../" class="text-xl font-black text-green-400 tracking-tighter font-headline-md hover:opacity-80 transition-opacity">
+            CYBER_LOG
+        </a>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-space-grotesk uppercase tracking-widest text-sm text-zinc-500 hover:text-zinc-300 transition-colors" href="../">Home</a>
+            <a class="font-space-grotesk uppercase tracking-widest text-sm text-zinc-500 hover:text-zinc-300 transition-colors" href="../#projects">Projects</a>
+            <a class="font-space-grotesk uppercase tracking-widest text-sm text-green-400 border-b-2 border-green-400 pb-1" href="../#blog">Intelligence</a>
+            <a class="font-space-grotesk uppercase tracking-widest text-sm text-zinc-500 hover:text-zinc-300 transition-colors" href="../#contact">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-green-400 cursor-pointer">notifications</span>
+            <span class="material-symbols-outlined text-green-400 cursor-pointer">terminal</span>
+            <img alt="Security Analyst Profile" class="w-8 h-8 rounded-full border border-zinc-700" src="../assets/profile.jpg"/>
+        </div>
     </div>
-    <div class="bg3d-vignette"></div>
-  </div>
+</nav>
 
-  <!-- SITE LAYER -->
-  <div class="site">
-    <!-- Optional: reuse your header nav, or keep blog minimal -->
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-text">
-            <span class="brand-name">Anil Budthapa</span>
-            <span class="brand-sub">SOC Analyst • Security Analyst</span>
-          </div>
+<!-- Main Content Grid -->
+<main class="pt-32 pb-xl px-gutter max-w-[1200px] mx-auto grid grid-cols-12 gap-gutter">
+    <!-- Breadcrumbs & Meta Header -->
+    <header class="col-span-12 mb-lg">
+        <div class="flex items-center gap-2 mb-4 text-zinc-500 font-label-caps uppercase">
+            <a class="hover:text-green-400" href="../#blog">INTEL</a>
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+            <a class="hover:text-green-400" href="#">TELEMETRY_ANALYSIS</a>
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span class="text-green-400">SYSMON_EID_REPORT</span>
         </div>
-
-        <nav class="nav" aria-label="Primary">
-          <a href="/">Home</a>
-          <a href="/#projects">Projects</a>
-          <a href="/#blog">Blog</a>
-          <a href="/#skills">Skills</a>
-          <a href="/#certs">Certifications</a>
-          <a href="/#about">About</a>
-          <a href="/#contact">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-          <a class="btn btn-ghost hide-xs" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn btn-primary hide-xs" href="/assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <h1 class="font-headline-xl text-primary leading-tight mb-6 max-w-4xl">
+            Why Sysmon Event IDs Matter for SOC Teams: A Practical Guide to High-Fidelity Detection
+        </h1>
+        <div class="flex flex-wrap items-center gap-6 p-4 border-l-4 border-green-400 bg-zinc-900/30">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">person</span>
+                <span class="font-label-caps text-zinc-400">AUTHOR: ANIL BUDTHAPA</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">calendar_today</span>
+                <span class="font-label-caps text-zinc-400">DATE: 01 JAN 2026</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">security</span>
+                <span class="font-label-caps text-zinc-400">FOCUS: SOC OPERATIONS</span>
+            </div>
         </div>
-
-        <button class="nav-toggle" id="navToggle" type="button"
-          aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-
-      <!-- Mobile Nav -->
-      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
-        <div class="container mobile-nav-inner">
-          <a href="/">Home</a>
-          <a href="/#projects">Projects</a>
-          <a href="/#blog">Blog</a>
-          <a href="/#skills">Skills</a>
-          <a href="/#certs">Certifications</a>
-          <a href="/#about">About</a>
-          <a href="/#contact">Contact</a>
-
-          <div class="mobile-actions">
-            <a class="btn btn-ghost" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn btn-primary" href="/assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-          </div>
-        </div>
-      </nav>
     </header>
 
-    <main id="main">
-      <section class="section">
-        <div class="container">
-          <!-- wrap the whole article in a card so it floats over spline -->
-          <article class="card pad blog-article">
-            <header class="blog-header">
-              <div class="badge">
-                <span class="dot"></span>
-                Sysmon · SOC Telemetry
-              </div>
-              <h1 class="blog-title">
-                Why Sysmon Event IDs Matter for SOC Teams: A Practical Guide to High-Fidelity Detection
-              </h1>
-              <div class="meta">
-                <span><span class="meta-label">Author:</span> Anil Budthapa</span>
-                <span><span class="meta-label">Date:</span> 01 January 2026</span>
-                <span><span class="meta-label">Focus:</span> SOC Operations · Detection Engineering</span>
-              </div>
-            </header>
-
-            <section class="highlight-box">
-              <div class="section-label">Overview</div>
-              <h2>Sysmon as a Strategic Sensor for SOC Operations</h2>
-              <p>
-                Modern intrusions do not happen in a single step. They unfold as a chain of actions:
-                initial execution, privilege escalation, persistence, lateral movement, and finally
-                impact or data exfiltration. Default Windows logging rarely provides enough fidelity
-                to reconstruct this chain with confidence.
-              </p>
-              <p>
-                <strong>Sysmon (System Monitor)</strong> fills this gap by producing rich, high-signal
-                telemetry that maps directly to attacker techniques. When properly configured and
-                operationalised in a SOC, Sysmon transforms endpoint logs into actionable evidence
-                for detection engineering and incident response.
-              </p>
-            </section>
-
-            <figure class="sysmon-figure">
-              <img src="/assets/sysmon_blog.png" alt="Sysmon dashboard showing key event IDs and endpoint activity" />
-              <figcaption>
-                <span class="badge-inline">Figure</span>
-                Example Sysmon dashboard view summarising critical event IDs across endpoints.
-              </figcaption>
-            </figure>
-
-            <!-- keep your existing sections exactly the same below -->
-            <!-- Execution & Initial Access -->
-            <section>
-              <div class="section-label">Execution & Initial Access</div>
-              <h2>Execution & Initial Access: Establishing the First Footprint</h2>
-              <h3><span class="code-tag">Event ID 1 – ProcessCreate</span></h3>
-              <p>
-                Logs every new process execution, including command-line arguments. This event is the
-                primary starting point for endpoint investigations and enables SOC analysts to build
-                a precise execution timeline, identify LOLBins, and detect suspicious tooling such as
-                <code>powershell.exe</code>, <code>certutil.exe</code>, or <code>mshta.exe</code>.
-              </p>
-
-              <h3><span class="code-tag">Event ID 7 – ImageLoad</span></h3>
-              <p>
-                Captures DLL loading activity. Attackers frequently leverage DLL hijacking and
-                injection to execute payloads in the context of trusted processes. Event 7 provides
-                visibility into unusual or unsigned DLLs and abuse of living-off-the-land binaries.
-              </p>
-
-              <h3><span class="code-tag">Event ID 3 – NetworkConnect</span></h3>
-              <p>
-                Records outbound network connections with process context. Correlating Event 3 with
-                Event 1 allows SOC teams to answer a critical question: <strong>“Which process initiated
-                this connection to this IP or domain?”</strong> This is essential for detecting
-                command-and-control (C2) traffic and malicious downloads.
-              </p>
-            </section>
-
-            <!-- Lateral Movement & Priv Esc -->
-            <section>
-              <div class="section-label">Lateral Movement & Privilege Escalation</div>
-              <h2>Lateral Movement & Privilege Escalation: Detecting Post-Exploitation Activity</h2>
-
-              <h3><span class="code-tag">Event ID 8 – CreateRemoteThread</span></h3>
-              <p>
-                Indicates remote thread creation, a classic memory-injection technique used by many
-                post-exploitation frameworks including Cobalt Strike and Meterpreter. This event is
-                a high-value signal for detecting process injection and stealthy lateral movement.
-              </p>
-
-              <h3><span class="code-tag">Event ID 10 – ProcessAccess</span></h3>
-              <p>
-                Monitors access to other processes, including sensitive ones such as
-                <code>lsass.exe</code>. Abnormal access patterns here often correspond to credential
-                theft attempts using tools like Mimikatz. Properly tuned alerts on Event 10 can
-                provide early warning of privilege escalation and credential harvesting.
-              </p>
-            </section>
-
-            <!-- Persistence -->
-            <section>
-              <div class="section-label">Persistence & Configuration Abuse</div>
-              <h2>Persistence & Configuration Abuse: Watching the Registry</h2>
-              <p>
-                The combination of Events <span class="code-tag">12</span>,
-                <span class="code-tag">13</span>, and <span class="code-tag">14</span> provides a
-                detailed view of registry changes:
-              </p>
-
-              <ul>
-                <li><span class="code-tag">12 – RegistryObjectCreate</span> · New key creation</li>
-                <li><span class="code-tag">13 – RegistryValueSet</span> · Value modifications</li>
-                <li><span class="code-tag">14 – RegistryKeyRename</span> · Renaming of existing keys</li>
-              </ul>
-
-              <p>
-                Attackers rely heavily on registry-based persistence via Run keys, service
-                configuration, shell hijacking, and scheduled tasks. Tracking this trio of events
-                allows SOC teams to detect unauthorised configuration changes that indicate
-                persistence, privilege escalation, or system tampering.
-              </p>
-            </section>
-
-            <!-- File system / exfil -->
-            <section>
-              <div class="section-label">File System & Exfiltration</div>
-              <h2>File System & Data Exfiltration: Payloads, Hiding Places, and Cleanup</h2>
-
-              <h3><span class="code-tag">Event ID 11 – FileCreate</span></h3>
-              <p>
-                Captures file creation operations. This is invaluable for spotting payload drops,
-                staging files, ransomware notes, and other artefacts of malicious activity,
-                particularly in locations such as <code>%TEMP%</code>, <code>%APPDATA%</code>, and
-                user Downloads folders.
-              </p>
-
-              <h3><span class="code-tag">Event ID 15 – FileCreateStreamHash</span></h3>
-              <p>
-                Monitors Alternate Data Streams (ADS) and records a hash of the content. When the
-                content is text and small, Sysmon can log the actual text, including metadata such as
-                <code>Zone.Identifier</code> with <strong>HostUrl</strong> and
-                <strong>ReferrerUrl</strong>. This enables analysts to see the original download
-                source for suspicious files and to detect hidden scripts or payloads stored inside ADS.
-              </p>
-
-              <h3><span class="code-tag">Event ID 23 – FileDelete</span></h3>
-              <p>
-                Tracks file deletion events. While deletion is common in normal operations, a pattern
-                of deletes following malicious executions often indicates anti-forensics behaviour.
-                Correlating Event 23 with Events 1, 10, and 11 can reveal attempts to remove tools,
-                logs, or artefacts after an attack.
-              </p>
-            </section>
-
-            <!-- Discovery & Recon -->
-            <section>
-              <div class="section-label">Discovery & Reconnaissance</div>
-              <h2>Discovery & Recon: Mapping the Environment and Data Paths</h2>
-
-              <h3><span class="code-tag">Event ID 22 – DNSQuery</span></h3>
-              <p>
-                DNS activity is a critical component of attacker infrastructure. Event 22 logs DNS
-                queries at the endpoint level, enabling detection of unusual domains, DGA-style
-                patterns, and reconnaissance for external services. When correlated with proxy and
-                firewall logs, this event supports strong detection of C2 infrastructure.
-              </p>
-
-              <h3><span class="code-tag">Event IDs 24 / 25 – Clipboard Events</span></h3>
-              <p>
-                Clipboard capture events can be highly indicative of data theft, especially over RDP
-                sessions or during interactive access to sensitive systems. Observing unusual clipboard
-                activity on high-value endpoints is an important part of insider threat and data
-                exfiltration monitoring.
-              </p>
-            </section>
-
-            <!-- WMI / stealth -->
-            <section>
-              <div class="section-label">Stealth & Automation</div>
-              <h2>Stealth & Automation: WMI as a Fileless Attack Surface</h2>
-
-              <h3><span class="code-tag">Event ID 26 – WMI Event</span></h3>
-              <p>
-                WMI is a preferred mechanism for fileless persistence, remote execution, and
-                automated tasking in advanced intrusions. Event 26 surfaces WMI consumers and filters
-                that may be abused by attackers to maintain stealthy, long-term access without
-                dropping obvious binaries to disk.
-              </p>
-            </section>
-
-            <!-- Summary table -->
-            <section>
-              <div class="section-label">Summary</div>
-              <h2>From Raw Logs to Operational Detection</h2>
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Event ID</th>
-                      <th>Category</th>
-                      <th>Primary Detection Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><td>1</td><td>Execution</td><td>Process creation and command line; baseline for attack timelines.</td></tr>
-                    <tr><td>3</td><td>Network</td><td>Outbound connections with process context; C2 and downloads.</td></tr>
-                    <tr><td>7</td><td>Execution</td><td>DLL loading, including unsigned or abnormal modules.</td></tr>
-                    <tr><td>8</td><td>Lateral Movement</td><td>Remote thread injection; high-risk post-exploitation behaviour.</td></tr>
-                    <tr><td>10</td><td>Privilege Escalation</td><td>Process access to LSASS and other sensitive targets; credential theft.</td></tr>
-                    <tr><td>11</td><td>File System</td><td>Payload drops, staging files, ransomware artefacts.</td></tr>
-                    <tr><td>12 / 13 / 14</td><td>Persistence</td><td>Registry-based persistence and configuration abuse.</td></tr>
-                    <tr><td>15</td><td>File System / ADS</td><td>Hidden content and download metadata in Alternate Data Streams.</td></tr>
-                    <tr><td>22</td><td>Discovery / C2</td><td>DNS queries for suspicious or DGA-like domains.</td></tr>
-                    <tr><td>23</td><td>Anti-forensics</td><td>Cleanup and artefact removal post-compromise.</td></tr>
-                    <tr><td>24 / 25</td><td>Exfiltration</td><td>Clipboard activity that may indicate copy-out of sensitive data.</td></tr>
-                    <tr><td>26</td><td>Stealth / Automation</td><td>Fileless persistence and tasking via WMI.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <p>
-                For security operations teams, Sysmon is more than a supplementary log source; it is a
-                strategic sensor that, when tuned and operationalised, significantly reduces attacker
-                dwell time. Aligning detections with these core event IDs allows SOC analysts to
-                prioritise the highest-value telemetry, automate triage, and respond to threats with
-                greater accuracy and speed.
-              </p>
-            </section>
-
-            <!-- COMMENTS SECTION (GISCUS) -->
-            <section class="comments-section" id="comments">
-              <div class="section-label">Discussion</div>
-              <h2>Comments</h2>
-              <p class="comments-intro">
-                Comments are powered by GitHub Discussions via Giscus. Sign in with GitHub to join the conversation.
-              </p>
-
-              <script src="https://giscus.app/client.js"
-                      data-repo="anilbudthapa1/My_Portfolio"
-                      data-repo-id="R_kgDON40t8w"
-                      data-category="Announcements"
-                      data-category-id="DIC_kwDON40t884C0cZF"
-                      data-mapping="pathname"
-                      data-strict="0"
-                      data-reactions-enabled="1"
-                      data-emit-metadata="1"
-                      data-input-position="top"
-                      data-theme="transparent_dark"
-                      data-lang="en"
-                      data-loading="lazy"
-                      crossorigin="anonymous"
-                      async>
-              </script>
-            </section>
-
-            <section class="author-box">
-              <div><span class="author-name">About the Author</span></div>
-              <p>
-                Anil Budthapa is a cybersecurity practitioner focused on SOC operations, malware
-                defence, and detection engineering. With hands-on experience in blue-team tooling,
-                threat hunting, and adversary emulation, Anil is committed to sharing practical,
-                operator-focused knowledge with the security community.
-              </p>
-
-              <div class="tags">
-                <span class="tag">Sysmon</span>
-                <span class="tag">SOC Operations</span>
-                <span class="tag">Detection Engineering</span>
-                <span class="tag">Digital Forensics</span>
-                <span class="tag">Incident Response</span>
-              </div>
-
-              <div class="hashtags">
-                #cybersecurity #sysmon #soc #incidentresponse #dfir #blueteam
-                #detectionengineering #mitreattack #windowssecurity #threathunting
-                #securityoperations #malwareanalysis #digitalforensics #networksecurity
-              </div>
-            </section>
-          </article>
+    <!-- Sidebar: Table of Contents -->
+    <aside class="hidden lg:block col-span-3 sticky top-32 h-fit">
+        <div class="p-6 border border-zinc-800 bg-zinc-950/50">
+            <h3 class="font-label-caps text-green-400 mb-6 border-b border-zinc-800 pb-2 flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">list_alt</span>
+                CONTENTS
+            </h3>
+            <nav class="space-y-4">
+                <a class="block font-body-sm text-green-400 border-l-2 border-green-400 pl-4" href="#executive-summary">01. Executive Summary</a>
+                <a class="block font-body-sm text-zinc-500 hover:text-zinc-300 pl-4 border-l-2 border-zinc-800 transition-colors" href="#execution">02. Execution & Initial Access</a>
+                <a class="block font-body-sm text-zinc-500 hover:text-zinc-300 pl-4 border-l-2 border-zinc-800 transition-colors" href="#lateral-movement">03. Lateral Movement & Priv Esc</a>
+                <a class="block font-body-sm text-zinc-500 hover:text-zinc-300 pl-4 border-l-2 border-zinc-800 transition-colors" href="#persistence">04. Persistence & Registry</a>
+                <a class="block font-body-sm text-zinc-500 hover:text-zinc-300 pl-4 border-l-2 border-zinc-800 transition-colors" href="#file-system">05. File System & Exfil</a>
+                <a class="block font-body-sm text-zinc-500 hover:text-zinc-300 pl-4 border-l-2 border-zinc-800 transition-colors" href="#summary-matrix">06. Summary Matrix</a>
+            </nav>
+            <div class="mt-8 pt-8 border-t border-zinc-800">
+                <a href="../assets/resume.pdf" class="w-full bg-primary-container text-on-primary py-3 font-label-caps flex items-center justify-center gap-2 hover:bg-green-300 transition-colors no-underline">
+                    <span class="material-symbols-outlined text-sm">download</span>
+                    EXPORT INTEL BRIEF
+                </a>
+            </div>
         </div>
-      </section>
-    </main>
-  </div>
+    </aside>
 
-  <!-- your nav toggle script if you have one in app.js -->
-  <script src="/app.js" defer></script>
+    <!-- Content Area -->
+    <article class="col-span-12 lg:col-span-9 space-y-md">
+        <section id="executive-summary">
+            <div class="section-label text-zinc-500 font-label-caps mb-2 text-xs">01. EXECUTIVE SUMMARY</div>
+            <p class="font-body-lg text-zinc-300 mb-6 leading-relaxed">
+                Modern intrusions unfold as a chain of actions. Default Windows logging rarely provides enough fidelity to reconstruct this chain with confidence. <strong>Sysmon (System Monitor)</strong> fills this gap by producing rich, high-signal telemetry that maps directly to attacker techniques.
+            </p>
+            <div class="p-6 bg-zinc-900 border border-zinc-800 mb-8">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-green-400">insights</span>
+                    <h4 class="font-label-caps text-green-400">STRATEGIC SENSOR DEPLOYMENT</h4>
+                </div>
+                <p class="font-body-sm text-zinc-400">
+                    When properly operationalised in a SOC, Sysmon transforms endpoint logs into actionable evidence for detection engineering and incident response, providing visibility into initial execution, privilege escalation, and lateral movement.
+                </p>
+            </div>
+            
+            <figure class="border border-zinc-800 overflow-hidden bg-black mb-12">
+                <img src="../assets/sysmon_blog.png" alt="Sysmon dashboard" class="w-full opacity-80 hover:opacity-100 transition-opacity duration-500"/>
+                <figcaption class="p-3 text-[10px] font-code-callout text-zinc-500 border-t border-zinc-800 bg-zinc-950">
+                    FIG_01: SYSMON_TELEMETRY_DASHBOARD_VUE // SOURCE: LOCAL_MONITORING_NODE
+                </figcaption>
+            </figure>
+        </section>
+
+        <section id="execution" class="pt-8">
+            <h2 class="font-headline-md text-primary mb-6 flex items-center gap-3">
+                <span class="text-zinc-700">02.</span> Execution & Initial Access
+            </h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-green-400 font-code-callout text-sm mb-2">EVENT_ID_1: PROCESS_CREATE</h3>
+                    <p class="text-zinc-400 font-body-sm">The primary starting point for investigations. Logs every new process execution and command-line arguments, enabling analysts to build precise timelines and identify LOLBins abuse.</p>
+                </div>
+                <div>
+                    <h3 class="text-green-400 font-code-callout text-sm mb-2">EVENT_ID_7: IMAGE_LOAD</h3>
+                    <p class="text-zinc-400 font-body-sm">Captures DLL loading activity. Essential for detecting DLL hijacking and injection where attackers execute payloads within the context of trusted processes.</p>
+                </div>
+                <div>
+                    <h3 class="text-green-400 font-code-callout text-sm mb-2">EVENT_ID_3: NETWORK_CONNECT</h3>
+                    <p class="text-zinc-400 font-body-sm">Correlates network connections with specific processes, answering the critical question: "Which process initiated this connection to this IP or domain?"</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lateral-movement" class="pt-8">
+            <h2 class="font-headline-md text-primary mb-6 flex items-center gap-3">
+                <span class="text-zinc-700">03.</span> Lateral Movement & Priv Esc
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div class="p-6 border border-zinc-800 bg-zinc-950 hover:border-green-400 transition-all">
+                    <h5 class="font-label-caps text-green-400 mb-2">EVENT_ID_8: REMOTE_THREAD</h5>
+                    <p class="font-body-sm text-zinc-500">Detects memory-injection techniques used by post-exploitation frameworks like Cobalt Strike and Meterpreter.</p>
+                </div>
+                <div class="p-6 border border-zinc-800 bg-zinc-950 hover:border-green-400 transition-all">
+                    <h5 class="font-label-caps text-green-400 mb-2">EVENT_ID_10: PROCESS_ACCESS</h5>
+                    <p class="font-body-sm text-zinc-500">Monitors access to sensitive processes like lsass.exe, flagging potential credential theft attempts via Mimikatz.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="persistence" class="pt-8">
+            <h2 class="font-headline-md text-primary mb-6 flex items-center gap-3">
+                <span class="text-zinc-700">04.</span> Persistence & Registry
+            </h2>
+            <div class="bg-black border border-zinc-800 p-6 font-code-callout text-sm text-zinc-400">
+                <div class="mb-2 text-green-500">// REGISTRY_MONITORING_TRIO</div>
+                <div class="grid grid-cols-1 gap-2">
+                    <div class="flex gap-4"><span class="text-green-400">EID_12</span><span>RegistryObjectCreate (New Key Creation)</span></div>
+                    <div class="flex gap-4"><span class="text-green-400">EID_13</span><span>RegistryValueSet (Value Modification)</span></div>
+                    <div class="flex gap-4"><span class="text-green-400">EID_14</span><span>RegistryKeyRename (Key Manipulation)</span></div>
+                </div>
+            </div>
+            <p class="mt-4 text-zinc-500 font-body-sm">Tracking this trio allows SOC teams to detect unauthorized configuration changes indicating persistence via Run keys or service tampering.</p>
+        </section>
+
+        <section id="summary-matrix" class="pt-8">
+            <h2 class="font-headline-md text-primary mb-6 flex items-center gap-3">
+                <span class="text-zinc-700">05.</span> Summary Matrix
+            </h2>
+            <div class="overflow-x-auto border border-zinc-800">
+                <table class="w-full text-left font-body-sm text-zinc-400">
+                    <thead class="bg-zinc-900 text-green-400 font-label-caps text-xs">
+                        <tr>
+                            <th class="p-4 border-b border-zinc-800">EID</th>
+                            <th class="p-4 border-b border-zinc-800">CATEGORY</th>
+                            <th class="p-4 border-b border-zinc-800">DETECTION_VALUE</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800">
+                        <tr class="hover:bg-zinc-900/50">
+                            <td class="p-4 font-code-callout text-green-400">1</td>
+                            <td class="p-4">Execution</td>
+                            <td class="p-4">Process creation; baseline for attack timelines.</td>
+                        </tr>
+                        <tr class="hover:bg-zinc-900/50">
+                            <td class="p-4 font-code-callout text-green-400">3</td>
+                            <td class="p-4">Network</td>
+                            <td class="p-4">Outbound connections with process context.</td>
+                        </tr>
+                        <tr class="hover:bg-zinc-900/50">
+                            <td class="p-4 font-code-callout text-green-400">8</td>
+                            <td class="p-4">Lateral</td>
+                            <td class="p-4">Remote thread injection; Cobalt Strike detection.</td>
+                        </tr>
+                        <tr class="hover:bg-zinc-900/50">
+                            <td class="p-4 font-code-callout text-green-400">22</td>
+                            <td class="p-4">Discovery</td>
+                            <td class="p-4">DNS queries for suspicious or DGA domains.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- GISCUS COMMENTS -->
+        <section class="pt-xl border-t border-zinc-900" id="comments">
+            <h3 class="font-headline-md text-primary mb-8 flex items-center gap-4">
+                <span class="material-symbols-outlined text-green-400">forum</span>
+                DISCUSSION_LOG
+            </h3>
+            <script src="https://giscus.app/client.js"
+                    data-repo="anilbudthapa1/My_Portfolio"
+                    data-repo-id="R_kgDON40t8w"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDON40t884C0cZF"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="1"
+                    data-input-position="top"
+                    data-theme="transparent_dark"
+                    data-lang="en"
+                    data-loading="lazy"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </section>
+    </article>
+
+    <!-- Author Box -->
+    <section class="col-span-12 mt-xl border-t border-zinc-800 pt-xl">
+        <div class="flex flex-col md:flex-row gap-gutter items-center bg-zinc-950 p-8 border border-zinc-900">
+            <img class="w-24 h-24 rounded-full border-2 border-green-400 p-1" src="../assets/profile.jpg" alt="Anil Budthapa"/>
+            <div class="flex-1 text-center md:text-left">
+                <h4 class="font-headline-md text-green-400 text-lg mb-2">ABOUT_THE_OPERATOR</h4>
+                <p class="text-zinc-500 font-body-sm max-w-2xl">
+                    Anil Budthapa is a cybersecurity practitioner focused on SOC operations, malware defence, and detection engineering. With hands-on experience in blue-team tooling, threat hunting, and adversary emulation.
+                </p>
+                <div class="mt-4 flex flex-wrap justify-center md:justify-start gap-2">
+                    <span class="px-2 py-1 border border-zinc-800 font-label-caps text-[10px] text-zinc-400">#SYSMON</span>
+                    <span class="px-2 py-1 border border-zinc-800 font-label-caps text-[10px] text-zinc-400">#SOC</span>
+                    <span class="px-2 py-1 border border-zinc-800 font-label-caps text-[10px] text-zinc-400">#DETECTION</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black border-t border-zinc-800 py-12 mt-xl">
+    <div class="max-w-[1200px] mx-auto px-8 flex flex-col items-center gap-6">
+        <div class="font-label-caps text-zinc-600 text-[10px] tracking-[0.2em]">
+            © 2026 TERMINAL_PORTFOLIO // ENCRYPTED CONNECTION
+        </div>
+        <div class="flex gap-8">
+            <a class="font-label-caps text-[10px] text-zinc-600 hover:text-green-400 transition-colors" href="https://www.linkedin.com/in/anilbudthapa/">LinkedIn</a>
+            <a class="font-label-caps text-[10px] text-zinc-600 hover:text-green-400 transition-colors" href="https://github.com/anilbudthapa1">GitHub</a>
+        </div>
+        <div class="w-16 h-[2px] bg-zinc-900"></div>
+        <div class="text-zinc-800 font-code-callout text-[8px]">
+            8A 4F C2 99 D1 33 00 FF 41 82 21 0E 0E 13 13
+        </div>
+    </div>
+</footer>
 </body>
 </html>
