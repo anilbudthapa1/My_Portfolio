@@ -1,490 +1,278 @@
 <!doctype html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Anil Budthapa — SOC Analyst / Security Analyst in Melbourne. Blue Team, detection, incident triage, malware analysis, automation." />
-  <meta name="theme-color" content="#070c16" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anil Budthapa - entry-level Cybersecurity Analyst, SOC Level 1, GRC, and IAM candidate based in Melbourne, Australia." />
+  <meta name="theme-color" content="#000000" />
   <meta name="color-scheme" content="dark" />
-  <link rel="icon" type="image/x-icon" href="https://defencexinso.com/favicon.ico">
-
-  <title>Anil Budthapa | Security Analyst | Researcher</title>
-
-  <link rel="stylesheet" href="style.css" /> 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N25DNFRVX"></script>
+  <title>Anil Budthapa | Cybersecurity Analyst</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-8N25DNFRVX');
-</script>
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Anil Budthapa | Security Analyst | Researcher" />
-  <meta property="og:description" content="Blue-Team,Detection-Engineering,Incident-Triage,Threat-Hunting,EDR,SIEM,IDS,IPS,MITRE-ATT&CK,SOAR,Security-Automation,Log-Analysis,Threat-Intel,YARA,Sysmon,Network-Forensics,Endpoint-Forensics,Playbooks,Alert-Tuning,IOC-Enrichment,Containment,Response" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/profile.jpg" />
-
-  <!-- Spline Viewer -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            surface: "#131313",
+            "surface-container": "#201f1f",
+            "surface-container-low": "#1c1b1b",
+            "surface-container-high": "#2a2a2a",
+            "surface-container-highest": "#353534",
+            "on-surface": "#e5e2e1",
+            "on-surface-variant": "#b9ccb2",
+            "primary-container": "#00ff41",
+            "on-primary-container": "#007117",
+            "on-primary": "#003907",
+            secondary: "#aec6ff",
+            "secondary-container": "#508eff",
+            outline: "#84967e",
+            "outline-variant": "#3b4b37"
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
+          },
+          spacing: {
+            xs: "4px",
+            sm: "12px",
+            md: "24px",
+            lg: "48px",
+            xl: "80px",
+            gutter: "24px",
+            base: "8px"
+          },
+          fontFamily: {
+            headline: ["Space Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            code: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body { margin: 0; background: #000; color: #e5e2e1; font-family: "Inter", sans-serif; }
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; display: inline-block; vertical-align: middle; }
+    .terminal-glow { text-shadow: 0 0 10px rgba(0,255,65,.4); }
+    .scanline { background: linear-gradient(to bottom, rgba(0,255,65,0) 50%, rgba(0,255,65,.05) 50%); background-size: 100% 4px; pointer-events: none; }
+    .terminal-panel { background-image: radial-gradient(circle at top left, rgba(0,255,65,.12), transparent 28%), linear-gradient(180deg, rgba(17,17,17,.98), rgba(8,8,8,.98)); }
+    .mobile-nav { display: none; }
+    .mobile-nav.open { display: block; }
+    .matrix-bg { background-image: linear-gradient(rgba(0,255,65,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,65,.05) 1px, transparent 1px); background-size: 34px 34px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
+<body class="bg-black text-on-surface selection:bg-primary-container selection:text-black">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-primary-container focus:px-4 focus:py-2 focus:font-headline focus:text-black" href="#main">Skip to content</a>
 
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- FULL-PAGE SPLINE BACKGROUND (INTERACTABLE) -->
-  <div class="bg3d" aria-hidden="true">
-    <div class="bg3d-spline">
-      <spline-viewer url="https://prod.spline.design/dHYPjVMCxEMMjI36/scene.splinecode"></spline-viewer>
-    </div>
-    <div class="bg3d-vignette"></div>
-  </div>
-
-  <!-- SITE LAYER -->
-  <div class="site">
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container header-inner">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-text">
-            <span class="brand-name">Anil Budthapa</span>
-            <span class="brand-sub">SOC Analyst • Security Analyst</span>
-          </div>
-        </div>
-
-        <nav class="nav" aria-label="Primary">
-          <a href="#projects">Projects</a>
-          <a href="#blog">Blog</a>
-          <a href="#skills">Skills</a>
-          <a href="#certs">Certifications</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-          <a class="btn btn-ghost hide-xs" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn btn-primary hide-xs" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-        </div>
-
-        <button class="nav-toggle" id="navToggle" type="button"
-          aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-
-      <!-- Mobile Nav -->
-      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
-        <div class="container mobile-nav-inner">
-          <a href="#projects">Projects</a>
-          <a href="#blog">Blog</a>
-          <a href="#skills">Skills</a>
-          <a href="#certs">Certifications</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-
-          <div class="mobile-actions">
-            <a class="btn btn-ghost" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-          </div>
-        </div>
+  <header class="fixed left-0 top-0 z-50 w-full border-b border-[#333333] bg-black/85 backdrop-blur-md">
+    <div class="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-4 px-5 py-4 md:px-8">
+      <a class="font-headline text-xl font-bold text-[#00FF41]" href="#home">ANIL_BUDTHAPA</a>
+      <nav class="hidden items-center gap-8 font-headline text-sm font-bold uppercase md:flex" aria-label="Primary navigation">
+        <a class="text-[#00FF41] transition-colors hover:text-white" href="#home">Home</a>
+        <a class="text-gray-500 transition-colors hover:text-[#00FF41]" href="#projects">Projects</a>
+        <a class="text-gray-500 transition-colors hover:text-[#00FF41]" href="#skills">Skills</a>
+        <a class="text-gray-500 transition-colors hover:text-[#00FF41]" href="#blogs">Blogs</a>
+        <a class="text-gray-500 transition-colors hover:text-[#00FF41]" href="#contact">Contact</a>
       </nav>
-    </header>
+      <div class="flex items-center gap-3">
+        <a class="hidden bg-[#00FF41] px-4 py-2 font-headline text-xs font-bold text-black transition-all hover:bg-[#00cc33] active:scale-95 sm:inline-flex" href="assets/resume.pdf" target="_blank" rel="noreferrer">DOWNLOAD_CV</a>
+        <a class="hidden text-[#00FF41] transition-colors hover:bg-[#111111] sm:inline-flex" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer" aria-label="GitHub profile"><span class="material-symbols-outlined p-1">terminal</span></a>
+        <button class="inline-flex h-10 w-10 items-center justify-center border border-[#333333] text-[#00FF41] md:hidden" id="navToggle" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav border-t border-[#333333] bg-black/95 px-5 py-4 md:hidden" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="grid gap-3 font-headline text-sm font-bold uppercase">
+        <a class="border border-[#333333] px-4 py-3 text-[#00FF41]" href="#home">Home</a>
+        <a class="border border-[#333333] px-4 py-3 text-gray-400" href="#projects">Projects</a>
+        <a class="border border-[#333333] px-4 py-3 text-gray-400" href="#skills">Skills</a>
+        <a class="border border-[#333333] px-4 py-3 text-gray-400" href="#blogs">Blogs</a>
+        <a class="border border-[#333333] px-4 py-3 text-gray-400" href="#contact">Contact</a>
+        <a class="bg-[#00FF41] px-4 py-3 text-center text-black" href="assets/resume.pdf" target="_blank" rel="noreferrer">Download CV</a>
+      </div>
+    </nav>
+  </header>
 
-    <main id="main">
-      <!-- Hero -->
-      <section class="hero" id="top">
-        <div class="container hero-inner">
-          <div class="hero-left">
-            <div class="pill-row">
-              <span class="pill">Melbourne</span>
-              <span class="pill pill-soft">Open to Onsite / Hybrid / Remote</span>
-            </div>
+  <aside class="fixed left-0 top-0 z-40 hidden h-full w-64 flex-col border-r border-[#333333] bg-[#111111] pt-24 lg:flex">
+    <div class="mb-8 px-6">
+      <h2 class="font-headline text-2xl font-black text-[#00FF41]">Budthapa.sh</h2>
+      <p class="font-code text-xs text-gray-500">Root Access Granted</p>
+    </div>
+    <nav class="flex-1 font-headline text-xs font-bold uppercase" aria-label="Side navigation">
+      <a class="flex items-center gap-3 border-l-4 border-[#00FF41] bg-[#00FF41]/10 px-6 py-3 text-[#00FF41]" href="#home"><span class="material-symbols-outlined text-sm">dashboard</span>Overview</a>
+      <a class="flex items-center gap-3 px-6 py-3 text-gray-500 transition-all hover:bg-[#222222] hover:text-[#00FF41]" href="#projects"><span class="material-symbols-outlined text-sm">code</span>Repositories</a>
+      <a class="flex items-center gap-3 px-6 py-3 text-gray-500 transition-all hover:bg-[#222222] hover:text-[#00FF41]" href="#skills"><span class="material-symbols-outlined text-sm">verified</span>Skills</a>
+      <a class="flex items-center gap-3 px-6 py-3 text-gray-500 transition-all hover:bg-[#222222] hover:text-[#00FF41]" href="#blogs"><span class="material-symbols-outlined text-sm">article</span>Blogs</a>
+      <a class="flex items-center gap-3 px-6 py-3 text-gray-500 transition-all hover:bg-[#222222] hover:text-[#00FF41]" href="#contact"><span class="material-symbols-outlined text-sm">mail</span>Contact</a>
+    </nav>
+    <div class="border-t border-[#333333] p-6">
+      <a class="block w-full border border-[#00FF41] py-2 text-center font-headline text-xs font-bold text-[#00FF41] transition-colors hover:bg-[#00FF41]/10" href="mailto:hypemsltech@gmail.com">HIRE_ME</a>
+      <div class="mt-4 space-y-2 font-code text-xs text-gray-500">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span>Springvale, Melbourne</div>
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">public</span>Open Australia-wide</div>
+      </div>
+    </div>
+  </aside>
 
-            <h1 class="hero-title">
-              Security Analyst / Researcher
-              <span class="hero-sub">Threat Modeling • Risk Assessment • Incident Triage • Malware Analysis • SIEM</span>
-            </h1>
+  <main class="relative min-h-screen overflow-hidden pt-24 lg:ml-64" id="main">
+    <div class="absolute inset-0 matrix-bg opacity-35"></div>
+    <div class="absolute inset-0 scanline opacity-20"></div>
 
-            <p class="hero-lead">
-              Cybersecurity professional focused on investigation-driven security operations, practical labs, and automation
-              to streamline detection and response workflows.
-            </p>
-
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#projects">View Projects</a>
-              <a class="btn btn-ghost" href="#contact">Contact</a>
-            </div>
-
-            <div class="tag-row" aria-label="Core tooling">
-              <span class="tag">Splunk</span>
-              <span class="tag">Wireshark</span>
-              <span class="tag">YARA</span>
-              <span class="tag">Linux</span>
-              <span class="tag">Burp Suite</span>
-              <span class="tag">Nmap</span>
-              <span class="tag">Snort</span>
-              <span class="tag">Windows</span>
-              <span class="tag">Docker</span>
-              <span class="tag">GitHub</span>
-              <span class="tag">Python</span>
-              <span class="tag">PortSwigger</span>
-              <span class="tag">HackTheBox</span>
-              <span class="tag">ISACA</span>
-              <span class="tag">ISC2</span>
-              <span class="tag">TryHackMe</span>
-            </div>
-
-            <div class="social-row">
-              <a class="mini-link" href="https://www.linkedin.com/in/anilbudthapa/" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a class="mini-link" href="https://tryhackme.com/p/insohacker" target="_blank" rel="noreferrer">TryHackMe</a>
-              <a class="mini-link" href="https://orcid.org/0009-0006-1169-0977/" target="_blank" rel="noreferrer">ORCID</a>
-              <a class="mini-link" href="https://www.credly.com/badges/9e4eb4b8-2bd5-40c8-8201-2f1997ec83ac/public_url" target="_blank" rel="noreferrer">Credly</a>
-            </div>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8 lg:py-16" id="home">
+      <div class="grid gap-gutter md:grid-cols-12">
+        <div class="space-y-md md:col-span-8">
+          <div class="inline-flex border border-[#333333] bg-[#111111] px-3 py-1 font-code text-xs text-[#00FF41]">STATUS: ACTIVE // ENTRY_LEVEL_CYBERSECURITY_ANALYST</div>
+          <h1 class="terminal-glow font-headline text-5xl font-bold leading-tight text-on-surface md:text-6xl">Anil Budthapa</h1>
+          <p class="max-w-3xl font-body text-lg leading-8 text-on-surface-variant">Entry-level cybersecurity and SOC candidate based in Melbourne with hands-on lab and project experience in alert triage, incident handling, SIEM investigations, log analysis, Windows security events, Active Directory and IAM fundamentals, vulnerability assessment, and OWASP-aligned web testing.</p>
+          <div class="grid gap-sm pt-sm sm:grid-cols-3">
+            <div class="border border-[#333333] bg-[#111111] p-md transition-colors hover:border-[#00FF41]"><span class="material-symbols-outlined text-3xl text-[#00FF41]">policy</span><h2 class="mt-3 font-headline text-2xl font-semibold">SOC Level 1</h2><p class="mt-1 text-sm text-gray-500">Alert triage, escalation, investigation notes</p></div>
+            <div class="border border-[#333333] bg-[#111111] p-md transition-colors hover:border-[#00FF41]"><span class="material-symbols-outlined text-3xl text-[#00FF41]">verified_user</span><h2 class="mt-3 font-headline text-2xl font-semibold">GRC</h2><p class="mt-1 text-sm text-gray-500">Risk, compliance basics, documentation</p></div>
+            <div class="border border-[#333333] bg-[#111111] p-md transition-colors hover:border-[#00FF41]"><span class="material-symbols-outlined text-3xl text-[#00FF41]">fingerprint</span><h2 class="mt-3 font-headline text-2xl font-semibold">IAM</h2><p class="mt-1 text-sm text-gray-500">Access reviews, AD, identity workflows</p></div>
           </div>
-
-          <aside class="hero-card" aria-label="Profile card">
-            <div class="profile-top">
-              <img class="avatar" src="assets/profile.jpg" alt="Portrait of Anil Budthapa" loading="lazy" decoding="async" />
-              <div class="profile-meta">
-                <div class="profile-name">Anil Budthapa</div>
-                <div class="profile-role">SOC Analyst • Security Analyst</div>
-                <div class="profile-loc">Greater Melbourne Area</div>
-              </div>
-            </div>
-
-            <div class="kpi-grid">
-              <div class="kpi">
-                <div class="kpi-num">Top 1%</div>
-                <div class="kpi-label">TryHackMe Rank</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-num">50+ Rooms</div>
-                <div class="kpi-label">PortSwigger Academy</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-num">100+</</div>
-                <div class="kpi-label">HackTheBox</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-num">Continuous</div>
-                <div class="kpi-label">Learning</div>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="mini-stats">
-              <div class="mini-stat">
-                <div class="stat-big">Bash + Python</div>
-                <div class="stat-label">Automation-first scripting approach</div>
-              </div>
-              <div class="mini-stat">
-                <div class="stat-big">SOC Focus</div>
-                <div class="stat-label">Detection, triage, investigation, reporting</div>
-              </div>
-              <div class="mini-stat">
-                <div class="stat-big">Research</div>
-                <div class="stat-label">Develop, detect, and analyze malware</div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section class="section" id="projects">
-        <div class="container">
-          <div class="section-head">
-            <h2>Featured Projects</h2>
-            <p class="muted">Case-study style: problem → build → evidence.</p>
-          </div>
-
-          <div class="grid-3">
-            <article class="card project">
-              <img class="thumb" src="assets/projects/pentesting_framework.jpg" alt="Pentesting Framework project preview" loading="lazy" decoding="async" />
-              <div class="project-body">
-                <div class="project-top">
-                  <h3>Pentesting Framework</h3>
-                  <div class="chip-row">
-                    <span class="chip">Go</span>
-                    <span class="chip">Recon</span>
-                    <span class="chip">OWASP</span>
-                  </div>
-                </div>
-                <p class="muted">A modular security testing framework focused on recon, scanning, and structured reporting workflows.</p>
-                <ul class="bullets">
-                  <li>Modular scanning approach aligned to OWASP categories</li>
-                  <li>Local UI and structured result output</li>
-                  <li>Extensible architecture for adding new modules</li>
-                </ul>
-                <div class="project-actions">
-                  <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/Pentesting_Framework" target="_blank" rel="noreferrer">Repo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project">
-              <img class="thumb" src="assets/projects/care_portal.jpg" alt="Care Portal project preview" loading="lazy" decoding="async" />
-              <div class="project-body">
-                <div class="project-top">
-                  <h3>Care Portal (Smart PMS)</h3>
-                  <div class="chip-row">
-                    <span class="chip">Python</span>
-                    <span class="chip">SQL</span>
-                    <span class="chip">Security</span>
-                  </div>
-                </div>
-                <p class="muted">A secure Patient Management System concept with role-based access and workflow features.</p>
-                <ul class="bullets">
-                  <li>Profiles, appointments, prescriptions, billing, notifications</li>
-                  <li>Structured data model and UI workflow</li>
-                  <li>Security-minded design and access separation</li>
-                </ul>
-                <div class="project-actions">
-                  <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/care_portal" target="_blank" rel="noreferrer">Repo</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="card project">
-              <img class="thumb" src="assets/projects/malware_development.jpg" alt="Malware Development project preview" loading="lazy" decoding="async" />
-              <div class="project-body">
-                <div class="project-top">
-                  <h3>Malware Development & Analysis Lab</h3>
-                  <div class="chip-row">
-                    <span class="chip">C</span>
-                    <span class="chip">Windows</span>
-                    <span class="chip">RE</span>
-                  </div>
-                </div>
-                <p class="muted">A learning repository for understanding malware internals and defensive insight.</p>
-                <ul class="bullets">
-                  <li>Executable internals and behavior comprehension</li>
-                  <li>Analysis-focused mindset and lab practice</li>
-                  <li>Documentation-driven learning</li>
-                </ul>
-                <div class="project-actions">
-                  <a class="btn btn-ghost" href="https://github.com/anilbudthapa1/Malware_Development" target="_blank" rel="noreferrer">Repo</a>
-                </div>
-              </div>
-            </article>
+          <div class="flex flex-wrap gap-md pt-md">
+            <a class="inline-flex items-center gap-2 bg-[#00FF41] px-8 py-4 font-headline text-base font-bold text-black transition-all hover:shadow-[0_0_20px_rgba(0,255,65,.3)]" href="assets/resume.pdf" target="_blank" rel="noreferrer">DOWNLOAD CV <span class="material-symbols-outlined">download</span></a>
+            <a class="inline-flex items-center border border-[#0070F3] px-8 py-4 font-headline text-base font-bold text-[#0070F3] transition-colors hover:bg-[#0070F3]/10" href="#projects">VIEW PROJECTS</a>
           </div>
         </div>
-      </section>
-
-      <!-- Blog -->
-      <section class="section" id="blog">
-        <div class="container">
-          <div class="section-head">
-            <h2>Blog</h2>
-            <p class="muted">Deep dives into SOC operations, detection engineering, and blue-team workflows.</p>
-          </div>
-
-          <div class="grid-3">
-            <article class="card project">
-              <img class="thumb" src="assets/sysmon_blog.png" alt="Sysmon Event IDs blog preview" loading="lazy" decoding="async" />
-              <div class="project-body">
-                <div class="project-top">
-                  <h3>Sysmon Event IDs That Matter for SOC Teams</h3>
-                  <div class="chip-row">
-                    <span class="chip">Sysmon</span>
-                    <span class="chip">SOC</span>
-                    <span class="chip">Detection</span>
-                  </div>
-                </div>
-                <p class="muted">
-                  A practical guide to Sysmon Event IDs 1, 3, 7, 8, 10, 11, 12–15, 22, 23, and 26, and how they map to real attacker TTPs for investigation and triage.
-                </p>
-                <ul class="bullets">
-                  <li>Execution, lateral movement, and persistence mapped to Sysmon</li>
-                  <li>Why each event matters for detection engineering</li>
-                  <li>Designed as a quick reference for SOC analysts</li>
-                </ul>
-                <div class="project-actions">
-                  <a class="btn btn-ghost" href="blogs/sysmon.html" target="_blank" rel="noreferrer">Read Blog</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section class="section" id="skills">
-        <div class="container">
-          <div class="section-head">
-            <h2>Skills & Tooling</h2>
-            <p class="muted">Focused on blue-team operations, analysis, and automation.</p>
-          </div>
-
-          <div class="grid-2">
-            <div class="card pad">
-              <h3 class="h3">Security Operations</h3>
-              <div class="tag-grid mt-10">
-                <span class="tag">Alert triage</span>
-                <span class="tag">Incident response</span>
-                <span class="tag">Threat hunting</span>
-                <span class="tag">Log analysis</span>
-                <span class="tag">MITRE ATT&CK</span>
-                <span class="tag">Risk assessment</span>
-                <span class="tag">Phishing analysis</span>
-                <span class="tag">Threat intel</span>
-                <span class="tag">Playbooks</span>
-              </div>
-
-              <div class="divider"></div>
-
-              <h3 class="h3">Detection & Engineering</h3>
-              <div class="tag-grid mt-10">
-                <span class="tag">SIEM rules</span>
-                <span class="tag">Sigma mindset</span>
-                <span class="tag">YARA rules</span>
-                <span class="tag">IOC workflows</span>
-                <span class="tag">Snort rules</span>
-              </div>
+        <aside class="md:col-span-4">
+          <div class="relative mx-auto max-w-[420px]">
+            <div class="absolute inset-0 bg-[#00FF41]/5 blur-3xl"></div>
+            <div class="relative border border-[#333333] bg-[#111111] p-4">
+              <img class="aspect-square w-full object-cover grayscale contrast-125 opacity-85" src="assets/profile.jpg" alt="Portrait of Anil Budthapa" loading="lazy" decoding="async" />
+              <div class="absolute bottom-4 right-4 border border-[#333333] bg-black px-3 py-2 font-code text-[10px] text-[#00FF41]">ID: SEC-MEL-2026</div>
             </div>
+            <div class="mt-sm grid grid-cols-2 gap-sm font-code text-xs">
+              <div class="border border-[#333333] bg-black p-3"><span class="block text-gray-500">LOCATION</span><span class="text-[#00FF41]">Melbourne, VIC</span></div>
+              <div class="border border-[#333333] bg-black p-3"><span class="block text-gray-500">AVAILABILITY</span><span class="text-[#00FF41]">Junior roles</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-            <div class="card pad">
-              <h3 class="h3">Tools</h3>
-              <div class="tag-grid mt-10">
-                <span class="tag">Splunk</span>
-                <span class="tag">Wireshark</span>
-                <span class="tag">Burp Suite</span>
-                <span class="tag">Nmap</span>
-                <span class="tag">Linux</span>
-                <span class="tag">Elastic</span>
-              </div>
-
-              <div class="divider"></div>
-
-              <h3 class="h3">Areas I Emphasize</h3>
-              <ul class="bullets">
-                <li>Detection engineering and alert triage workflows</li>
-                <li>Packet analysis and log-based investigations</li>
-                <li>Security scripting to reduce repetitive work</li>
-                <li>Malware research and analysis practice</li>
-                <li>IoT security experimentation (nRF24, CS11011, BLE)</li>
-              </ul>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8" id="skills">
+      <div class="mb-md flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div><h2 class="font-headline text-3xl font-semibold text-[#00FF41]">SKILLS_MATRIX</h2><p class="text-sm uppercase text-gray-500">Technical stack and analyst competencies</p></div>
+        <div class="font-code text-xs text-[#00FF41]">SYS_LOAD: LEARNING_ACTIVE</div>
+      </div>
+      <div class="grid grid-cols-1 gap-md md:grid-cols-12">
+        <div class="border border-[#333333] bg-[#111111] p-md md:col-span-8">
+          <div class="mb-md flex items-start justify-between border-b border-[#333333] pb-sm"><h3 class="font-headline text-2xl font-semibold"><span class="material-symbols-outlined text-[#00FF41]">security</span> SOC & DETECTION</h3><span class="font-code text-xs text-gray-500">LEVEL: JUNIOR_READY</span></div>
+          <div class="grid gap-md md:grid-cols-2">
+            <div class="space-y-5">
+              <div><div class="mb-2 flex justify-between font-headline text-xs font-bold uppercase"><span>Alert triage and escalation</span><span class="text-[#00FF41]">FOCUS</span></div><div class="h-2 bg-[#222222]"><div class="h-full w-[92%] bg-[#00FF41]"></div></div></div>
+              <div><div class="mb-2 flex justify-between font-headline text-xs font-bold uppercase"><span>SIEM log investigation</span><span class="text-[#00FF41]">LAB</span></div><div class="h-2 bg-[#222222]"><div class="h-full w-[88%] bg-[#00FF41]"></div></div></div>
+              <div><div class="mb-2 flex justify-between font-headline text-xs font-bold uppercase"><span>OWASP web testing</span><span class="text-[#00FF41]">PROJECT</span></div><div class="h-2 bg-[#222222]"><div class="h-full w-[82%] bg-[#00FF41]"></div></div></div>
+            </div>
+            <div class="grid grid-cols-2 gap-sm font-code text-xs">
+              <div class="border border-[#333333] bg-black p-4"><span class="block text-gray-500">SIEM</span><span>Splunk</span></div>
+              <div class="border border-[#333333] bg-black p-4"><span class="block text-gray-500">WEB</span><span>Burp Suite</span></div>
+              <div class="border border-[#333333] bg-black p-4"><span class="block text-gray-500">NETWORK</span><span>Wireshark / Nmap</span></div>
+              <div class="border border-[#333333] bg-black p-4"><span class="block text-gray-500">METHOD</span><span>MITRE ATT&CK</span></div>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Certifications -->
-      <section class="section" id="certs">
-        <div class="container">
-          <div class="section-head">
-            <h2>Certifications & Memberships</h2>
-            <p class="muted">Credible signals with verification where available.</p>
-          </div>
-
-          <div class="grid-3">
-            <a class="card cert pad" href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/FBD9G21U346C" target="_blank" rel="noreferrer">
-              <img class="cert-img" src="assets/certs/google_cybersecurity.jpg" alt="Google Cybersecurity certificate" loading="lazy" decoding="async" />
-              <h3>Google Cybersecurity</h3>
-              <p class="muted">Credential ID: FBD9G21U346C</p>
-            </a>
-
-            <a class="card cert pad" href="https://www.coursera.org/account/accomplishments/verify/GYGW8DZ7M36O" target="_blank" rel="noreferrer">
-              <img class="cert-img" src="assets/certs/automate_python.jpg" alt="Automate Cybersecurity Tasks with Python" loading="lazy" decoding="async" />
-              <h3>Automate Cybersecurity Tasks with Python</h3>
-              <p class="muted">Credential ID: GYGW8DZ7M36O</p>
-            </a>
-
-            <a class="card cert pad" href="https://www.credly.com/badges/9e4eb4b8-2bd5-40c8-8201-2f1997ec83ac/public_url" target="_blank" rel="noreferrer">
-              <img class="cert-img" src="assets/certs/sound_alarm.jpg" alt="Sound the Alarm: Detection and Response" loading="lazy" decoding="async" />
-              <h3>Sound the Alarm: Detection and Response</h3>
-              <p class="muted">Credly verification link</p>
-            </a>
+        <div class="border border-[#333333] bg-[#111111] p-md md:col-span-4">
+          <h3 class="mb-md font-headline text-2xl font-semibold"><span class="material-symbols-outlined text-[#0070F3]">cloud</span> PLATFORMS</h3>
+          <div class="space-y-sm font-headline text-sm font-semibold">
+            <div class="flex items-center justify-between border border-[#333333] bg-black p-3"><span>Windows Security Events</span><span class="material-symbols-outlined text-[#0070F3]">check_circle</span></div>
+            <div class="flex items-center justify-between border border-[#333333] bg-black p-3"><span>Linux Fundamentals</span><span class="material-symbols-outlined text-[#0070F3]">check_circle</span></div>
+            <div class="flex items-center justify-between border border-[#333333] bg-black p-3"><span>AWS / Azure Basics</span><span class="material-symbols-outlined text-[#0070F3]">check_circle</span></div>
+            <div class="flex items-center justify-between border border-[#333333] bg-black p-3"><span>Active Directory</span><span class="material-symbols-outlined text-[#0070F3]">check_circle</span></div>
           </div>
         </div>
-      </section>
-
-      <!-- About -->
-      <section class="section" id="about">
-        <div class="container">
-          <div class="section-head">
-            <h2>About</h2>
-            <p class="muted">Brief, recruiter-friendly summary.</p>
+        <div class="border border-[#333333] bg-[#111111] p-md md:col-span-5">
+          <h3 class="mb-md font-headline text-2xl font-semibold">VULN_&_IAM</h3>
+          <div class="mb-md flex flex-wrap gap-2 font-headline text-[10px] font-bold uppercase">
+            <span class="border border-[#0070F3] px-3 py-1 text-[#0070F3]">Vulnerability Assessment</span><span class="border border-[#0070F3] px-3 py-1 text-[#0070F3]">OWASP Top 10</span><span class="border border-[#0070F3] px-3 py-1 text-[#0070F3]">Access Reviews</span><span class="border border-[#0070F3] px-3 py-1 text-[#0070F3]">User Groups</span><span class="border border-[#0070F3] px-3 py-1 text-[#0070F3]">EDR/XDR Basics</span>
           </div>
-
-          <div class="grid-2">
-            <div class="card pad">
-              <h3 class="h3">What I do</h3>
-              <ul class="bullets">
-                <li>Investigate alerts, validate detections, and reduce false positives</li>
-                <li>Build small automations to speed up triage and reporting</li>
-                <li>Practice labs, PCAP analysis, and malware analysis mindset</li>
-              </ul>
-            </div>
-            <div class="card pad">
-              <h3 class="h3">Highlights</h3>
-              <ul class="bullets">
-                <li>Blue team focus: detection, triage, investigation, reporting</li>
-                <li>Strong tooling baseline: Splunk, Elastic, Wireshark, Linux, YARA</li>
-                <li>Automation mindset: Bash and Python</li>
-              </ul>
-            </div>
+          <p class="border-l-4 border-[#00FF41] bg-black p-4 font-code text-xs text-gray-400">Comfortable documenting findings, validating common issues, and connecting identity activity to SOC monitoring use cases.</p>
+        </div>
+        <div class="relative overflow-hidden border border-[#333333] bg-[#111111] p-md md:col-span-7">
+          <span class="material-symbols-outlined absolute right-4 top-4 text-[80px] text-[#00FF41] opacity-10">terminal</span>
+          <h3 class="mb-md font-headline text-2xl font-semibold">AUTOMATION_SCRIPTING</h3>
+          <div class="grid gap-md md:grid-cols-2">
+            <div class="space-y-4"><p><span class="font-code text-[#00FF41]">01</span> Python for security tooling</p><p><span class="font-code text-[#00FF41]">02</span> Bash and shell scripting</p><p><span class="font-code text-[#00FF41]">03</span> SQL and Go fundamentals</p></div>
+            <div class="border border-[#333333] bg-black p-4 font-code text-xs"><div class="text-[#00FF41]">def triage_alert(event):</div><div class="pl-4 text-gray-500"># enrich, map, document</div><div class="pl-4">context = map_to_mitre(event)</div><div class="pl-4">write_findings(context)</div><div class="text-[#00FF41]">return "READY_FOR_REVIEW"</div></div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Contact -->
-      <section class="section" id="contact">
-        <div class="container">
-          <div class="section-head">
-            <h2>Contact</h2>
-            <p class="muted">For roles, collaborations, or blue-team projects.</p>
-          </div>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8" id="projects">
+      <div class="mb-md"><div class="mb-4 inline-block border border-[#00FF41]/30 bg-[#00FF41]/5 px-3 py-1 font-headline text-[10px] font-bold uppercase text-[#00FF41]">SYSTEM_PORTFOLIO // PROJECTS</div><h2 class="font-headline text-4xl font-bold text-[#00FF41]">CYBER_DEFENSE_LABS</h2><p class="mt-2 max-w-2xl text-gray-400">Projects from the resume: SIEM workflows, OWASP-aligned testing, secure application design, SOC practice, Active Directory identity security, and GRC documentation.</p></div>
+      <div class="grid grid-cols-1 gap-gutter md:grid-cols-12">
+        <article class="group overflow-hidden border border-[#333333] bg-[#111111] transition-all hover:border-[#00FF41] md:col-span-8">
+          <div class="relative h-64 overflow-hidden bg-black"><img class="h-full w-full object-cover opacity-65 transition-transform duration-700 group-hover:scale-105" src="assets/sysmon_blog.png" alt="SIEM and detection project preview" loading="lazy" decoding="async" /><div class="absolute inset-0 bg-gradient-to-t from-[#111111] to-transparent"></div><div class="absolute left-4 top-4 flex gap-2 font-headline text-[10px] font-bold uppercase"><span class="border border-[#333333] bg-black/80 px-2 py-1 text-[#00FF41]">LOG COLLECTION</span><span class="border border-[#333333] bg-black/80 px-2 py-1 text-[#0070F3]">MITRE ATT&CK</span></div></div>
+          <div class="p-md"><div class="mb-sm flex items-start justify-between gap-4"><div><h3 class="font-headline text-2xl font-semibold">insoSIEM</h3><p class="mt-2 text-sm text-gray-400">SIEM-focused project exploring log collection, normalization, detection use cases, and investigation workflows.</p></div><a class="text-[#00FF41]" href="https://github.com/anilbudthapa1/insoSIEM" target="_blank" rel="noreferrer" aria-label="Open insoSIEM repository"><span class="material-symbols-outlined">open_in_new</span></a></div><div class="grid grid-cols-2 gap-sm font-code text-xs"><div class="border border-[#222222] bg-black p-3"><span class="block text-gray-500">Highlight</span><span>Repeatable triage notes</span></div><div class="border border-[#222222] bg-black p-3"><span class="block text-gray-500">Status</span><span class="text-[#00FF41]">2025-Present</span></div></div></div>
+        </article>
+        <article class="border border-[#333333] bg-[#111111] md:col-span-4"><div class="border-b border-[#333333] bg-[#222222] px-4 py-2 font-code text-[10px] text-gray-400">pentesting_framework.py</div><div class="p-md"><h3 class="font-headline text-2xl font-semibold">Pentesting Framework</h3><p class="mt-2 text-sm text-gray-400">Modular web security testing framework aligned to OWASP Top 10 with evidence capture and reporting structure.</p><ul class="mt-4 space-y-2 text-sm text-gray-300"><li><span class="material-symbols-outlined text-sm text-[#0070F3]">terminal</span> Recon and testing modules</li><li><span class="material-symbols-outlined text-sm text-[#0070F3]">terminal</span> Evidence handling</li><li><span class="material-symbols-outlined text-sm text-[#0070F3]">terminal</span> Structured reports</li></ul><a class="mt-6 inline-flex w-full justify-center border border-[#0070F3] py-2 font-headline text-xs font-bold uppercase text-[#0070F3] transition-all hover:bg-[#0070F3] hover:text-white" href="https://github.com/anilbudthapa1/Pentesting_Framework" target="_blank" rel="noreferrer">Source Code</a></div></article>
+        <article class="border border-[#333333] bg-[#111111] transition-all hover:border-[#00FF41] md:col-span-4"><img class="aspect-video w-full object-cover grayscale transition-all hover:grayscale-0" src="assets/projects/care_portal.jpg" alt="Care Portal project preview" loading="lazy" decoding="async" /><div class="p-md"><h3 class="font-headline text-2xl font-semibold">Care Portal</h3><p class="mt-2 text-sm text-gray-500">Role-based application project emphasizing permissions, authentication and authorization flows, and secure design thinking.</p><div class="mt-4 flex flex-wrap gap-2 font-headline text-[10px] font-bold uppercase"><span class="border border-outline-variant px-2 py-1 text-on-surface-variant">Least Privilege</span><span class="border border-outline-variant px-2 py-1 text-on-surface-variant">Python</span><span class="border border-outline-variant px-2 py-1 text-on-surface-variant">SQL</span></div></div></article>
+        <article class="border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#00FF41] md:col-span-4"><div class="mb-md flex items-center justify-between"><span class="font-headline text-[10px] font-bold uppercase text-[#00FF41]">TRAINING_MODULE</span><span class="material-symbols-outlined text-gray-600">monitoring</span></div><h3 class="font-headline text-2xl font-semibold">SOC / Analyst Practice</h3><p class="mt-2 text-sm text-gray-400">Hands-on practice with HTTP traffic, sessions, authentication behavior, Windows security events, triage, escalation decisions, and structured findings.</p><div class="mt-5"><div class="mb-1 flex justify-between font-headline text-[10px] font-bold uppercase"><span class="text-gray-500">Practice Loop</span><span class="text-[#00FF41]">ONGOING</span></div><div class="h-1 bg-[#222222]"><div class="h-full w-[98%] bg-[#00FF41]"></div></div></div></article>
+        <article class="border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#00FF41] md:col-span-4"><div class="mb-md flex h-12 w-12 items-center justify-center border border-[#333333] bg-[#222222]"><span class="material-symbols-outlined text-[#00FF41]">hub</span></div><h3 class="font-headline text-2xl font-semibold">Active Directory Security Lab</h3><p class="mt-2 text-sm text-gray-400">Lab-based practice covering users, groups, privileges, access reviews, and identity-related SOC monitoring use cases.</p><a class="mt-md flex items-center justify-between border-t border-[#222222] pt-md font-code text-xs uppercase text-gray-500 hover:text-[#00FF41]" href="https://github.com/anilbudthapa1/My_Portfolio/tree/main/My_project/Active_Directory" target="_blank" rel="noreferrer">Documentation <span class="material-symbols-outlined text-sm">arrow_forward</span></a></article>
+      </div>
+    </section>
 
-          <div class="grid-2">
-            <div class="card pad">
-              <h3 class="h3">Get in touch</h3>
-              <p class="muted">Fastest response via email or LinkedIn.</p>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8" id="certifications">
+      <div class="grid grid-cols-1 gap-xl lg:grid-cols-2">
+        <div><h2 class="mb-lg flex items-center gap-4 font-headline text-3xl font-semibold"><span class="material-symbols-outlined text-[#00FF41]">verified_user</span> CERTIFICATIONS</h2><div class="space-y-gutter">
+          <a class="flex gap-md border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#00FF41]" href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/FBD9G21U346C" target="_blank" rel="noreferrer"><img class="h-16 w-16 border border-[#333333] bg-black object-cover" src="assets/certs/google_cybersecurity.jpg" alt="Google Cybersecurity certificate" loading="lazy" decoding="async" /><div><h3 class="font-headline text-xl font-semibold text-[#00FF41]">Google Cybersecurity Professional Certificate</h3><p class="text-sm text-gray-500">Provider: Google - Completed</p></div></a>
+          <a class="flex gap-md border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#00FF41]" href="https://tryhackme.com/certificate/THM-6K5TBUSQXE" target="_blank" rel="noreferrer"><div class="flex h-16 w-16 items-center justify-center border border-[#333333] bg-black"><span class="material-symbols-outlined text-3xl text-[#00FF41]">shield</span></div><div><h3 class="font-headline text-xl font-semibold text-[#00FF41]">SOC Level 1 Certificate</h3><p class="text-sm text-gray-500">Provider: TryHackMe - Completed</p><p class="mt-1 font-code text-[10px] text-[#0070F3]">THM-6K5TBUSQXE</p></div></a>
+          <div class="flex gap-md border border-[#333333] bg-[#111111] p-md"><div class="flex h-16 w-16 items-center justify-center border border-[#333333] bg-black"><span class="material-symbols-outlined text-3xl text-[#00FF41]">cloud_done</span></div><div><h3 class="font-headline text-xl font-semibold text-[#00FF41]">Cloud Computing Fundamentals</h3><p class="text-sm text-gray-500">Provider: Simplilearn SkillUp - Completed</p></div></div>
+        </div></div>
+        <div><h2 class="mb-lg flex items-center gap-4 font-headline text-3xl font-semibold"><span class="material-symbols-outlined text-[#00FF41]">school</span> ACADEMIC_PATH</h2><div class="relative space-y-xl border-l border-[#333333] pl-8">
+          <div class="relative"><div class="absolute -left-[41px] top-0 h-4 w-4 bg-[#00FF41] shadow-[0_0_10px_#00FF41]"></div><div class="border border-[#333333] bg-[#111111] p-md"><span class="mb-2 block font-headline text-xs font-bold text-[#00FF41]">EXPECTED COMPLETION: 2026</span><h3 class="mb-2 font-headline text-2xl font-semibold">Bachelor of Information Technology</h3><p class="mb-4 text-gray-400">Major: Cybersecurity - Kent Institute Australia, Melbourne</p><div class="grid grid-cols-2 gap-4 font-code text-xs"><div><div class="text-gray-500">FOCUS</div><div class="text-[#00FF41]">Cybersecurity</div></div><div><div class="text-gray-500">LOCATION</div><div>Melbourne</div></div></div></div></div>
+          <div class="relative"><div class="absolute -left-[41px] top-0 h-4 w-4 bg-[#333333]"></div><div class="border border-[#333333] bg-[#111111] p-md"><span class="mb-2 block font-headline text-xs font-bold text-gray-500">MEMBERSHIPS</span><h3 class="mb-2 font-headline text-2xl font-semibold">ISACA + ACS</h3><p class="text-gray-500">ISACA ID 2244571 and Australian Computer Society Member ID 4476790.</p></div></div>
+        </div></div>
+      </div>
+    </section>
 
-              <div class="kv mt-10">
-                <div class="k">Email</div><div class="v">hypemsltech@gmail.com</div>
-                <div class="k">Phone</div><div class="v">+61 421 688 186</div>
-                <div class="k">LinkedIn</div><div class="v">linkedin.com/in/anilbudthapa</div>
-              </div>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8" id="blogs">
+      <div class="mb-md flex flex-col gap-3 md:flex-row md:items-end md:justify-between"><div><h2 class="font-headline text-3xl font-semibold text-[#00FF41]">BLOGS_PATH_READY</h2><p class="text-sm uppercase text-gray-500">A publishing path is ready for future writeups</p></div><a class="font-code text-xs text-[#00FF41] hover:text-white" href="blogs/">OPEN /blogs/</a></div>
+      <div class="grid grid-cols-1 gap-gutter md:grid-cols-3">
+        <article class="border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#00FF41]"><div class="mb-md flex items-start justify-between"><span class="material-symbols-outlined text-4xl text-[#00FF41]">article</span><span class="font-code text-xs text-gray-600">PATH: /blogs/</span></div><h3 class="font-headline text-2xl font-semibold">Blog Index</h3><p class="mt-2 text-sm text-on-surface-variant">Placeholder index for future SOC notes, detection writeups, GRC learning, IAM labs, and project case studies.</p><a class="mt-md inline-flex items-center gap-2 font-headline text-[#00FF41] hover:underline" href="blogs/">Open path <span class="material-symbols-outlined">arrow_forward</span></a></article>
+        <article class="border border-[#333333] bg-[#111111] p-md transition-all hover:border-[#0070F3]"><img class="mb-md aspect-video w-full object-cover" src="assets/sysmon_blog.png" alt="Sysmon blog preview" loading="lazy" decoding="async" /><h3 class="font-headline text-2xl font-semibold">Sysmon Event IDs</h3><p class="mt-2 text-sm text-on-surface-variant">Existing blue-team reference for SOC teams using Sysmon telemetry.</p><a class="mt-md inline-flex items-center gap-2 font-headline text-[#0070F3] hover:underline" href="blogs/sysmon.html">Read current post <span class="material-symbols-outlined">open_in_new</span></a></article>
+        <article class="terminal-panel border border-[#333333] p-md"><div class="font-code text-sm text-on-surface-variant"><p><span class="text-[#00FF41]">$</span> mkdir blogs/new-post</p><p class="pl-4 text-gray-500">ready_for_future_content=true</p><p><span class="text-[#00FF41]">$</span> publish_next_writeup.sh</p><p class="pl-4 text-[#00FF41]">STATUS: WAITING_FOR_AUTHOR</p></div></article>
+      </div>
+    </section>
 
-              <div class="contact-actions">
-                <a class="btn btn-primary" href="mailto:hypemsltech@gmail.com">Email Me</a>
-                <a class="btn btn-ghost" href="https://www.linkedin.com/in/anilbudthapa/" target="_blank" rel="noreferrer">LinkedIn</a>
-              </div>
-            </div>
-
-            <div class="card pad">
-              <h3 class="h3">Downloads</h3>
-              <p class="muted">Resume + key links.</p>
-              <div class="contact-actions">
-                <a class="btn btn-primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Open Resume</a>
-                <a class="btn btn-ghost" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a>
-              </div>
-            </div>
-          </div>
+    <section class="relative z-10 mx-auto max-w-[1200px] px-5 py-12 md:px-8" id="contact">
+      <div class="grid grid-cols-1 gap-gutter lg:grid-cols-12">
+        <div class="lg:col-span-7"><div class="mb-4 inline-flex items-center gap-2"><span class="h-2 w-2 animate-pulse bg-[#00FF41]"></span><span class="font-code text-xs uppercase text-[#00FF41]">System.Connection_Protocol</span></div><h2 class="terminal-glow mb-6 font-headline text-4xl font-bold">Establish a Secure Connection.</h2><p class="mb-8 max-w-xl text-lg leading-8 text-on-surface-variant">Currently based in Springvale, Melbourne, VIC, Australia. Open to graduate, junior, and entry-level cybersecurity opportunities across on-site, hybrid, and remote roles in Australia.</p><div class="flex gap-md border border-[#333333] bg-[#111111] p-md"><div class="border border-[#00FF41]/30 bg-[#00FF41]/10 p-4"><span class="material-symbols-outlined text-3xl text-[#00FF41]">location_on</span></div><div><div class="mb-1 font-headline text-[10px] font-bold uppercase text-gray-500">CURRENT_LOCATION</div><div class="font-headline text-2xl font-semibold">Springvale, Melbourne</div><div class="text-sm text-[#0070F3]">Open to relocate anywhere in Australia</div></div></div></div>
+        <div class="grid gap-gutter lg:col-span-5">
+          <div class="border border-[#333333] bg-[#111111] p-8"><div class="mb-10 flex items-start justify-between"><span class="material-symbols-outlined text-4xl text-[#00FF41]">mail</span><span class="font-code text-[#333333]">PORT_25</span></div><h3 class="mb-2 font-headline text-3xl font-semibold">Direct Messaging</h3><p class="mb-6 text-on-surface-variant">For recruitment inquiries, collaborations, or junior security opportunities.</p><a class="inline-flex items-center gap-4 break-all font-headline text-xl text-[#00FF41] hover:underline" href="mailto:hypemsltech@gmail.com">hypemsltech@gmail.com <span class="material-symbols-outlined">arrow_forward</span></a></div>
+          <div class="grid grid-cols-1 gap-sm sm:grid-cols-2"><a class="border border-[#333333] bg-[#111111] p-5 transition-all hover:border-[#00FF41]" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer"><span class="material-symbols-outlined text-3xl text-[#00FF41]">terminal</span><div class="mt-4 font-headline text-xl font-semibold">GitHub</div><p class="text-sm text-gray-500">Repositories and labs</p></a><a class="border border-[#333333] bg-[#111111] p-5 transition-all hover:border-[#0070F3]" href="https://www.linkedin.com/in/anilbudthapa" target="_blank" rel="noreferrer"><span class="material-symbols-outlined text-3xl text-[#0070F3]">public</span><div class="mt-4 font-headline text-xl font-semibold">LinkedIn</div><p class="text-sm text-gray-500">Career history</p></a></div>
         </div>
-      </section>
+      </div>
+      <div class="mx-auto mt-xl max-w-3xl overflow-hidden border border-[#333333] bg-[#111111]">
+        <div class="flex items-center gap-2 border-b border-[#333333] bg-[#222222] px-4 py-2"><div class="h-3 w-3 rounded-full bg-[#ff5f56]"></div><div class="h-3 w-3 rounded-full bg-[#ffbd2e]"></div><div class="h-3 w-3 rounded-full bg-[#27c93f]"></div><span class="ml-4 font-code text-[10px] text-gray-400">guest@anil-budthapa: ~/contact</span></div>
+        <div class="space-y-2 p-8 font-code text-sm text-on-surface-variant"><p><span class="text-[#00FF41]">$</span> whoami</p><p class="pl-4">anil_budthapa</p><p><span class="text-[#00FF41]">$</span> cat target_roles.txt</p><p class="pl-4">junior_soc_analyst | cybersecurity_analyst | vulnerability_management | security_operations | iam_analyst | grc_analyst</p><p><span class="text-[#00FF41]">$</span> cat contact.txt</p><p class="pl-4 text-[#00FF41]">email=hypemsltech@gmail.com // phone=+61 421 688 186 // linkedin=linkedin.com/in/anilbudthapa</p><div class="flex items-center gap-2"><span class="text-[#00FF41]">$</span><span class="h-5 w-2 animate-pulse bg-[#00FF41]"></span></div></div>
+      </div>
+    </section>
 
-      <!-- Footer -->
-      <footer class="site-footer">
-        <div class="container footer-inner">
-          <div>
-            <div class="footer-title">Anil Budthapa</div>
-            <div class="footer-sub muted">SOC Analyst • Security Analyst • Melbourne</div>
-          </div>
-          <div class="footer-links">
-            <a href="#projects">Projects</a>
-            <a href="#certs">Certifications</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
+    <footer class="relative z-10 border-t border-[#333333] bg-black px-5 py-8 md:px-8">
+      <div class="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-md md:flex-row"><div class="font-headline text-[10px] font-bold uppercase text-[#00FF41]">&copy; 2026 ANIL BUDTHAPA // ENCRYPTED CONNECTION</div><div class="flex flex-wrap justify-center gap-8 font-headline text-[10px] font-bold uppercase text-gray-600"><a class="hover:text-[#00FF41]" href="https://github.com/anilbudthapa1" target="_blank" rel="noreferrer">GitHub</a><a class="hover:text-[#00FF41]" href="https://www.linkedin.com/in/anilbudthapa" target="_blank" rel="noreferrer">LinkedIn</a><a class="hover:text-[#00FF41]" href="https://tryhackme.com/p/insohacker" target="_blank" rel="noreferrer">TryHackMe</a><a class="hover:text-[#00FF41]" href="blogs/">Blogs</a></div><div class="flex items-center gap-2 font-code text-[10px] text-green-500"><span class="h-2 w-2 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,.6)]"></span>SYSTEM SECURE</div></div>
+    </footer>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around border-t border-[#333333] bg-black/95 py-3 backdrop-blur-md md:hidden" aria-label="Bottom navigation">
+    <a class="flex flex-col items-center gap-1 text-[#00FF41]" href="#home"><span class="material-symbols-outlined">home</span><span class="font-headline text-[8px] font-bold uppercase">Home</span></a>
+    <a class="flex flex-col items-center gap-1 text-gray-500" href="#projects"><span class="material-symbols-outlined">code</span><span class="font-headline text-[8px] font-bold uppercase">Projects</span></a>
+    <a class="flex flex-col items-center gap-1 text-gray-500" href="#skills"><span class="material-symbols-outlined">verified</span><span class="font-headline text-[8px] font-bold uppercase">Skills</span></a>
+    <a class="flex flex-col items-center gap-1 text-gray-500" href="#contact"><span class="material-symbols-outlined">mail</span><span class="font-headline text-[8px] font-bold uppercase">Contact</span></a>
+  </nav>
 
   <script src="app.js" defer></script>
 </body>
